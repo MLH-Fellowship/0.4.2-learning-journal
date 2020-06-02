@@ -15,3 +15,6 @@ labels: feature
 
 ## Possible Implementation
 <!--- Not obligatory, but suggest an idea for implementing addition or change -->
+
+## Screenshot
+<!--- Not obligatory, but a picture is better than a thousand words -->
