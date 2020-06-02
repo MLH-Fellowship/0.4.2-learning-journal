@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Color from "../constants/Colors";
 import {
   View,
@@ -12,6 +12,9 @@ import {
 } from "react-native";
 
 export default function JournalLogger({}) {
+  const [titleText, setTitleText] = useState("");
+  const [descText, setDescText] = useState("");
+
   return (
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView style={styles.filler} behavior="padding">
@@ -24,15 +27,26 @@ export default function JournalLogger({}) {
               <Text style={styles.imagePickerText}>Select an Image!</Text>
             </View>
             <TextInput
+              value={titleText}
               style={styles.textInput}
               placeholder="Enter a title!"
               placeholderTextColor={Color.purple}
+              onChange={(e) => setTitleText(e.target.value)}
             />
             <TextInput
+              value={descText}
+              placeholder="A few more details, maybe?"
+              placeholderTextColor={Color.purple}
+              multiline
               style={[
                 styles.textInput,
-                { height: 100, textAlignVertical: "top" },
+                {
+                  height: 100,
+                  textAlignVertical: "top",
+                  overflow: "scroll",
+                },
               ]}
+              onChange={(e) => setDescText(e.target.value)}
             />
           </View>
         </TouchableWithoutFeedback>
