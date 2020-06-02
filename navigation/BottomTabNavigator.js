@@ -4,7 +4,6 @@ import * as React from "react";
 import TabBarIcon from "../components/TabBarIcon";
 import HomeScreen from "../screens/HomeScreen";
 import LinksScreen from "../screens/LinksScreen";
-import AddScreen from "../screens/JournalLogger";
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = "Home";
@@ -19,7 +18,7 @@ export default function BottomTabNavigator({ navigation, route }) {
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
       <BottomTab.Screen
         name="Home"
-        component={AddScreen}
+        component={HomeScreen}
         options={{
           title: "Get Started",
           tabBarIcon: ({ focused }) => (
