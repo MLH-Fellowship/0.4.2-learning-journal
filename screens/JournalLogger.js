@@ -9,15 +9,19 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
+  TouchableOpacity,
 } from "react-native";
 
 export default function JournalLogger({}) {
   const [titleText, setTitleText] = useState("");
   const [descText, setDescText] = useState("");
 
+  const submitHandler = (e) => {};
+
   return (
     <SafeAreaView style={styles.container}>
-      <KeyboardAvoidingView style={styles.filler} behavior="padding">
+      <Text style={styles.headerText}>Add Entry</Text>
+      <KeyboardAvoidingView style={{ flex: 0.9 }} behavior="padding">
         <TouchableWithoutFeedback
           style={styles.filler}
           onPress={Keyboard.dismiss}
@@ -51,6 +55,10 @@ export default function JournalLogger({}) {
           </View>
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
+
+      <TouchableOpacity style={styles.button} onPress={submitHandler}>
+        <Text style={{ color: "white" }}>Submit</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }
@@ -65,6 +73,12 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     alignItems: "center",
+  },
+
+  headerText: {
+    textAlign: "center",
+    marginTop: 15,
+    fontSize: 30,
   },
 
   imagePicker: {
@@ -98,6 +112,16 @@ const styles = StyleSheet.create({
       height: 5,
     },
     fontSize: 18,
+    borderRadius: 20,
+  },
+
+  button: {
+    alignSelf: "center",
+    backgroundColor: Color.purple,
+    width: "40%",
+    alignItems: "center",
+    justifyContent: "center",
+    height: 40,
     borderRadius: 20,
   },
 });
