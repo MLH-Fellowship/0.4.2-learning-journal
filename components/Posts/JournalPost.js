@@ -28,7 +28,6 @@ export default function JournalPost({ post }) {
           </View>
           </ImageBackground>
         </View>
-
     </View>
   );
 }
@@ -37,12 +36,6 @@ const dateFormatter = (raw_date) => {
   const mlist = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
   const date = new Date(raw_date);
   return `${date.getDate()} ${mlist[date.getMonth()]}, ${date.getFullYear()}`;
-};
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#fff",
-    fontFamily: "Roboto",
     marginBottom: 24,
   },
   image: {
