@@ -3,25 +3,25 @@ import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from "react
 import * as WebBrowser from "expo-web-browser";
 import { ScrollView } from "react-native-gesture-handler";
 
-import BG from "../assets/images/bg.png";
+import BG from "../../assets/images/bg.png";
 
 export default function ArticlePost() {
   return (
     <View style={styles.container}>
       <View style={styles.containerOut}>
         <View style={styles.dateContainer}>
-          <Text style={styles.dateDay}>10</Text>
+          <Text style={styles.dateDay}>9</Text>
           <Text style={styles.dateMonth}>June</Text>
         </View>
         <View style={styles.ArticleContainer}>
           <View style={styles.postMeta}>
-            <Text style={styles.articleTitle}>How to work with GraphQL & Relay</Text>
+            <Text style={styles.articleTitle}>How to work with React Native</Text>
             <Text style={styles.articleDesc}>Follow these simple and easy steps</Text>
           </View>
           <View style={styles.postInteract}>
-          <Image source={require("../assets/images/heart.png")} style={styles.welcomeImage} />
+          <Image source={require("../../assets/images/heart.png")} style={styles.welcomeImage} />
           <View style={styles.journalButton}>
-              <Text style={styles.journalButtonText} onPress={handleLearnMorePress}>Read</Text>
+              <Text style={styles.journalButtonText}  onPress={handleLearnMorePress}>Read</Text>
             </View>
           </View>
         </View>
@@ -29,7 +29,6 @@ export default function ArticlePost() {
     </View>
   );
 }
-
 function handleLearnMorePress() {
   WebBrowser.openBrowserAsync("https://github.com");
 }
@@ -37,10 +36,10 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
     fontFamily: "Roboto",
-    marginBottom: "1.5rem"
+    marginBottom: "1rem"
   },
   containerOut: {
-    backgroundColor: "#F9ECFF",
+    backgroundColor: "#A9BCF5",
     backgroundImage: `url(${BG})`,
     backgroundSize: "cover",
     height: "fit-content",
@@ -70,7 +69,7 @@ const styles = StyleSheet.create({
     fontSize: "1.1rem",
   },
   ArticleContainer: {
-    backgroundColor: "rgba(127, 63, 152, 0.95)",
+    backgroundColor: "rgba(88, 130, 250, 0.95)",
     padding: "1rem",
     borderRadius: "1rem",
     marginTop:"1rem",

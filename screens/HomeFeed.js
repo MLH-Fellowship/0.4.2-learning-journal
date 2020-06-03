@@ -5,9 +5,9 @@ import { ScrollView } from "react-native-gesture-handler";
 
 import { MonoText } from "../components/StyledText";
 
-import ArticleList from "../components/ArticleList"
+import ArticleList from "../components/Articles/ArticleList"
 
-export default function HomeScreen() {
+export default function HomeFeed() {
   return (
     <View style={styles.container}>
         <View style={styles.topContainer}>
@@ -37,7 +37,7 @@ export default function HomeScreen() {
   );
 }
 
-HomeScreen.navigationOptions = {
+HomeFeed.navigationOptions = {
   header: null,
 };
 
@@ -54,7 +54,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#F9ECFF",
     display: "grid",
     gridTemplateColumns: "1fr 1fr",
-
   },
   topContainerLeft: {
     display: "flex",
