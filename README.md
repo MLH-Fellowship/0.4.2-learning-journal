@@ -6,7 +6,11 @@ A React Native/GraphQL based application for running 'Learning Journal'
 
 Learning new things is fun, but do you keep a track of what you learned daily? With Learning Journal you can keep track of your daily learnings, share it with your friends and get motiviated from others journey!
 
-The app is built using [React Native](https://reactnative.dev/) for the front-end. The GraphQL API is being built with [MongoDB Stitch](https://www.mongodb.com/cloud/stitch) and we are using [Realy](https://relay.dev) as the GraphQL client.
+## Tech Stack
+
+ - [React Native](https://reactnative.dev/) for front-end
+ - [MongoDB Stitch](https://www.mongodb.com/cloud/stitch) to build GraphQL API
+ - [Relay](https://relay.dev) as the GraphQL client.
 
 ## Contribute
 
