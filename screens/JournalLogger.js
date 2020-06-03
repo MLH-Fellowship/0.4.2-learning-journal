@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Color from "../constants/Colors";
+import Heatmap from "../components/Heatmap";
 import {
   View,
   Text,
@@ -15,6 +16,20 @@ import {
 export default function JournalLogger({}) {
   const [titleText, setTitleText] = useState("");
   const [descText, setDescText] = useState("");
+
+  const commitsData = [
+    { date: "2020-06-02", count: 1 },
+    { date: "2020-06-03", count: 2 },
+    { date: "2020-06-04", count: 3 },
+    { date: "2020-06-05", count: 4 },
+    { date: "2020-06-06", count: 5 },
+    { date: "2020-05-30", count: 2 },
+    { date: "2020-05-31", count: 3 },
+    { date: "2020-05-01", count: 2 },
+    { date: "2020-05-02", count: 4 },
+    { date: "2020-05-05", count: 2 },
+    { date: "2020-05-30", count: 4 },
+  ];
 
   const submitHandler = (e) => {};
 
@@ -59,6 +74,8 @@ export default function JournalLogger({}) {
       <TouchableOpacity style={styles.button} onPress={submitHandler}>
         <Text style={{ color: "white" }}>Submit</Text>
       </TouchableOpacity>
+
+      <Heatmap dateDetails={commitsData} />
     </SafeAreaView>
   );
 }
