@@ -1,7 +1,6 @@
 import React from "react";
 import { View } from "react-native";
 import { ContributionGraph } from "react-native-chart-kit";
-import Color from "../constants/Colors";
 
 export default function Heatmap({ style, dateDetails, width, height }) {
   const getMonthLabel = (i) => {
@@ -55,7 +54,7 @@ export default function Heatmap({ style, dateDetails, width, height }) {
         numDays={110}
         showMonthLabels
         width={width || "100%"}
-        height={height || "100%"}
+        height={height || 300}
         getMonthLabel={getMonthLabel}
         chartConfig={chartConfig}
         onDayPress={(e) => console.log(e)}
