@@ -15,7 +15,7 @@ export default function HomeFeed() {
             <View style={styles.welcomeContainer}>
               <Text style={styles.dateText}>2nd June, 2020</Text>
               <Text style={styles.welcomeText}>
-                Hello, <b>Boi!</b>
+                Hello, Boi!
               </Text>
             </View>
             <View style={styles.streakContainer}>
@@ -52,14 +52,14 @@ const styles = StyleSheet.create({
   },
   topContainer: {
     backgroundColor: "#F9ECFF",
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr",
+    display: "flex",
+    flexDirection: "row",
   },
   topContainerLeft: {
     display: "flex",
-    flexDirection: "column",
+
     alignItems: "center",
-    padding: "1.5rem",
+    padding: 24,
   },
   welcomeContainer: {
     display: "flex",
@@ -67,37 +67,39 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   dateText: {
-    fontSize: "1.1rem",
+    fontSize: 18,
   },
   welcomeText: {
-    fontSize: "1.5rem",
-    marginBottom: "2rem",
+    fontSize: 24,
+    marginBottom: 32,
   },
   streakContainer: {
     backgroundColor: "#7F3F98",
-    width: "fit-content",
+    alignSelf: 'flex-start',
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    padding: "0.4rem",
-    borderRadius: "1rem",
-    boxShadow: "0px 1px 4px rgba(0, 0, 0, 0.25)"
+    padding: 3.2,
+    borderRadius: 16,
   },
   streakNumber: {
     color: "white",
-    fontSize: "1.9rem",
-    lineHeight: "25px",
+    fontSize: 30,
+    lineHeight: 25,
+
     fontWeight: "bold",
   },
   streakText: {
     color: "white",
-    fontSize: "1.1rem",
+    fontSize: 18,
   },
   topContainerRight: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    padding: "0.5rem",
+    padding: 8,
+    marginLeft: "auto",
+    marginRight: 10
   },
   welcomeImage: {
     width: 100,
@@ -105,15 +107,15 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
   },
   journalButton: {
-    marginTop: "1rem",
+    marginTop: 16,
     backgroundColor: "transparent",
-    borderWidth: "1px",
+    borderWidth: 1,
     borderColor: "#7F3F98",
-    padding: "0.4rem",
-    borderRadius: "1rem",
+    padding: 3.2,
+    borderRadius: 16
   },
   journalButtonText: {
     color: "#7F3F98",
-    fontSize: "1.3rem",
+    fontSize: 20,
   },
 });
