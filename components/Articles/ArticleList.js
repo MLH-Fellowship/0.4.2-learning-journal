@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
     fontFamily: "Roboto",
-    padding: "1.5rem",
+    padding: 24,
     flex: 1,
   },
 });

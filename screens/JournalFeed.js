@@ -32,24 +32,24 @@ const styles = StyleSheet.create({
   },
   topContainer: {
     backgroundColor: "#F9ECFF",
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr",
-    padding: "0.5rem"
+    display: "flex",
+    flexDirection: "row",
+    padding: 8
   },
   topContainerLeft: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    padding: "1.5rem",
+    padding: 24
   },
   userName:{
-      fontSize: "1.8rem",
+      fontSize: 29,
       fontWeight: "bold",
-      lineHeight: "20px"
+      lineHeight: 20
   },
   journalText:{
-    fontSize: "1.8rem",
+    fontSize: 29,
     fontWeight: "normal"
 },
   topContainerRight: {
@@ -57,7 +57,8 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    padding: "0.5rem",
+    padding: 8,
+    marginLeft: "auto"
   },
   welcomeImage: {
     width: 100,
