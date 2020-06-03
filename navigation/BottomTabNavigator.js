@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as React from 'react';
 
 import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/HomeFeed';
+import HomeScreen from '../screens/JournalFeed';
 import LinksScreen from '../screens/LinksScreen';
 
 const BottomTab = createBottomTabNavigator();

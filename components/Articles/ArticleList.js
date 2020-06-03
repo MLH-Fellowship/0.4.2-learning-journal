@@ -3,14 +3,31 @@ import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from "react
 import { ScrollView } from "react-native-gesture-handler";
 
 import ArticlePost from "./ArticlePost";
-import ArticlePost2 from "./ArticlePost2";
+
+const mockdata = {
+  posts: [
+    {
+      id: "1",
+      date: "06/01/2020",
+      title: "How to work with GraphQL & Relay",
+      description: "Follow these simple and easy steps",
+      url: "https://github.com",
+    },
+    {
+      id: "2",
+      date: "05/31/2020",
+      title: "How to work with React Native",
+      description: "Follow these simple and easy steps",
+      url: "https://github.com",
+    },
+  ],
+};
 
 export default function ArticleList() {
   return (
-        <ScrollView style={styles.container}>
-        <ArticlePost />
-        <ArticlePost2 />
-        </ScrollView>
+    <ScrollView style={styles.container}>
+      {mockdata.posts.map(post => <ArticlePost article={post}/>)}
+    </ScrollView>
   );
 }
 
@@ -19,6 +36,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     fontFamily: "Roboto",
     padding: "1.5rem",
-    flex: 1
+    flex: 1,
   },
 });

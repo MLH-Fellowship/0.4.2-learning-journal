@@ -5,23 +5,24 @@ import { ScrollView } from "react-native-gesture-handler";
 
 import BG from "../../assets/images/bg.png";
 
-export default function ArticlePost() {
+export default function ArticlePost({article}) {
+  const date = dateFormatter(article.date)
   return (
     <View style={styles.container}>
       <View style={styles.containerOut}>
         <View style={styles.dateContainer}>
-          <Text style={styles.dateDay}>10</Text>
-          <Text style={styles.dateMonth}>June</Text>
+          <Text style={styles.dateDay}>{date[1]}</Text>
+          <Text style={styles.dateMonth}>{date[0]}</Text>
         </View>
         <View style={styles.ArticleContainer}>
           <View style={styles.postMeta}>
-            <Text style={styles.articleTitle}>How to work with GraphQL & Relay</Text>
-            <Text style={styles.articleDesc}>Follow these simple and easy steps</Text>
+            <Text style={styles.articleTitle}>{article.title}</Text>
+            <Text style={styles.articleDesc}>{article.description}</Text>
           </View>
           <View style={styles.postInteract}>
           <Image source={require("../../assets/images/heart.png")} style={styles.welcomeImage} />
           <View style={styles.journalButton}>
-              <Text style={styles.journalButtonText} onPress={handleLearnMorePress}>Read</Text>
+              <Text style={styles.journalButtonText} onPress={handleLearnMorePress(article.url)}>Read</Text>
             </View>
           </View>
         </View>
@@ -30,8 +31,13 @@ export default function ArticlePost() {
   );
 }
 
-function handleLearnMorePress() {
-  WebBrowser.openBrowserAsync("https://github.com");
+const dateFormatter = raw_date => {
+  const date = new Date(raw_date);
+  return [date.toLocaleString('default', { month: 'short' }), date.getDate()];
+}
+
+function handleLearnMorePress(url) {
+  WebBrowser.openBrowserAsync(url);
 }
 const styles = StyleSheet.create({
   container: {
@@ -65,6 +71,7 @@ const styles = StyleSheet.create({
   dateDay: {
     fontSize: "1.6rem",
     fontWeight: "bold",
+    lineHeight: "25px"
   },
   dateMonth: {
     fontSize: "1.1rem",
@@ -92,14 +99,15 @@ const styles = StyleSheet.create({
   titleHeart:{
   },
   welcomeImage: {
-    width: 35,
-    height: 35,
+    width: 30,
+    height: 30,
     resizeMode: "contain",
   },
   postInteract:{
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    justifyContent: "center"
   },
   journalButton: {
     marginTop: "1rem",

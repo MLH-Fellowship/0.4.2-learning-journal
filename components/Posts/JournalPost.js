@@ -5,20 +5,17 @@ import { ScrollView } from "react-native-gesture-handler";
 
 import BG from "../../assets/images/bg.png";
 
-export default function JournalPost() {
+export default function JournalPost({ post }) {
+  const date = dateFormatter(post.date);
   return (
     <View style={styles.container}>
       <View style={styles.containerOut}>
         <View style={styles.dateContainer}>
-          <Text style={styles.date}>1st June, 2020</Text>
+          <Text style={styles.date}>{date}</Text>
         </View>
         <View style={styles.PostContainer}>
           <View style={styles.postMeta}>
-            <Text style={styles.postContent}>
-              Having the worst day so far. Setting up the app is the worst part. @tailwindcss won't
-              render. I think I will stick to known technologies after finishing this tutorial.
-              (#100daysofcode)
-            </Text>
+            <Text style={styles.postContent}>{post.content}</Text>
           </View>
         </View>
       </View>
@@ -26,9 +23,13 @@ export default function JournalPost() {
   );
 }
 
-function handleLearnMorePress() {
-  WebBrowser.openBrowserAsync("https://github.com");
-}
+const dateFormatter = (raw_date) => {
+  const date = new Date(raw_date);
+  return `${date.getDate()} ${date.toLocaleString("default", {
+    month: "short",
+  })}, ${date.getFullYear()}`;
+};
+
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
