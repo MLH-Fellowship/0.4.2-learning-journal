@@ -2,8 +2,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import * as React from "react";
 
 import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/JournalFeed';
-import LinksScreen from '../screens/LinksScreen';
+import Journal from '../screens/Journal';
+import Explore from '../screens/LinksScreen';
 import Login from '../components/Users/login'
 
 const BottomTab = createBottomTabNavigator();
