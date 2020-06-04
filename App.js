@@ -3,6 +3,11 @@ import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
 import { Platform, StatusBar, StyleSheet, View } from "react-native";
 
+import'bootstrap/dist/css/bootstrap.min.css';
+import $ from'jquery';
+import Popper from'popper.js';
+import'bootstrap/dist/js/bootstrap.bundle.min';
+
 import useCachedResources from "./hooks/useCachedResources";
 import BottomTabNavigator from "./navigation/BottomTabNavigator";
 import LinkingConfiguration from "./navigation/LinkingConfiguration";
