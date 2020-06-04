@@ -6,16 +6,18 @@ import Color from "../../constants/Colors";
 export default function ({ style, size }) {
   return (
     <TouchableOpacity style={[{ ...style }, styles.buttonStyle]}>
-      <MaterialIcons name="add" size={size || 24} color="white" />
+      <MaterialIcons name="add" size={size || 30} color="white" />
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
   buttonStyle: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
     backgroundColor: Color.darkPurple,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

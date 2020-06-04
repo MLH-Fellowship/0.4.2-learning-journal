@@ -1,9 +1,17 @@
 import * as WebBrowser from "expo-web-browser";
 import * as React from "react";
-import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Image,
+  Platform,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
+import LoggerButton from "../components/Buttons/LoggerButton";
 
-import JournalList from "../components/Posts/JournalPostList"
+import JournalList from "../components/Posts/JournalPostList";
 
 export default function JournalFeed() {
   return (
@@ -15,11 +23,15 @@ export default function JournalFeed() {
         </View>
         <View style={styles.topContainerRight}>
           <View>
-            <Image source={require("../assets/images/avatar.png")} style={styles.welcomeImage} />
+            <Image
+              source={require("../assets/images/avatar.png")}
+              style={styles.welcomeImage}
+            />
           </View>
         </View>
       </View>
-      <JournalList/>
+      <JournalList />
+      <LoggerButton style={styles.logButton} />
     </View>
   );
 }
@@ -34,34 +46,40 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     padding: 8,
-    paddingTop: 16
+    paddingTop: 16,
   },
   topContainerLeft: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    padding: 24
+    padding: 24,
   },
-  userName:{
-      fontSize: 29,
-      fontWeight: "bold",
-  },
-  journalText:{
+  userName: {
     fontSize: 29,
-    fontWeight: "normal"
-},
+    fontWeight: "bold",
+  },
+  journalText: {
+    fontSize: 29,
+    fontWeight: "normal",
+  },
   topContainerRight: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
     padding: 8,
-    marginLeft: "auto"
+    marginLeft: "auto",
   },
   welcomeImage: {
     width: 100,
     height: 100,
     resizeMode: "contain",
+  },
+
+  logButton: {
+    position: "absolute",
+    bottom: 10,
+    right: 10,
   },
 });
