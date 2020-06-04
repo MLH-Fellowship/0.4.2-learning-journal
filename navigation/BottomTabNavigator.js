@@ -4,13 +4,13 @@ import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
 
 import TabBarIcon from "../components/TabBarIcon";
-import HomeFeed from "../screens/HomeFeed";
-import JournalFeed from "../screens/JournalFeed";
+import Explore from "../screens/Explore";
+import JournalFeed from "../screens/Journal";
 import Logger from "../screens/JournalLogger";
 
 const BottomTab = createBottomTabNavigator();
 const RootStack = createStackNavigator();
-const INITIAL_ROUTE_NAME = "Home";
+const INITIAL_ROUTE_NAME = "Explore";
 
 function BottomTabNavigator({ navigation, route }) {
   // Set the header title on the parent stack navigator depending on the
@@ -21,10 +21,10 @@ function BottomTabNavigator({ navigation, route }) {
   return (
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
       <BottomTab.Screen
-        name="Home"
-        component={HomeFeed}
+        name="Explore"
+        component={Explore}
         options={{
-          title: "Get Started",
+          title: "Explore",
           tabBarIcon: ({ focused }) => (
             <TabBarIcon focused={focused} name="md-code-working" />
           ),
@@ -34,7 +34,7 @@ function BottomTabNavigator({ navigation, route }) {
         name="Journal"
         component={JournalFeed}
         options={{
-          title: "Resources",
+          title: "Journal",
           tabBarIcon: ({ focused }) => (
             <TabBarIcon focused={focused} name="md-book" />
           ),

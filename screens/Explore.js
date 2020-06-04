@@ -1,29 +1,24 @@
 import * as WebBrowser from "expo-web-browser";
 import * as React from "react";
-import {
-  Image,
-  Platform,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
-import LoggerButton from "../components/Buttons/LoggerButton";
+import { Image, StyleSheet, Text, View } from "react-native";
 
-import JournalList from "../components/Posts/JournalPostList";
+import JournalPostList from "../components/Posts/JournalPostList";
 
-export default function JournalFeed({ navigation }) {
-  function handleButtonPress() {
-    navigation.navigate("loggerModal");
-  }
-  import ArticleList from "../components/Articles/ArticleList";
-
+export default function HomeFeed() {
+  const today = new Date();
+  const date = dateFormatter(today);
   return (
     <View style={styles.container}>
       <View style={styles.topContainer}>
         <View style={styles.topContainerLeft}>
-          <Text style={styles.userName}>Explore</Text>
+          <View style={styles.welcomeContainer}>
+            <Text style={styles.dateText}>{date}</Text>
+            <Text style={styles.welcomeText}>Hello, Boi!</Text>
+          </View>
+          <View style={styles.streakContainer}>
+            <Text style={styles.streakNumber}>12</Text>
+            <Text style={styles.streakText}>Days Streak</Text>
+          </View>
         </View>
         <View style={styles.topContainerRight}>
           <View>
@@ -32,58 +27,114 @@ export default function JournalFeed({ navigation }) {
               style={styles.welcomeImage}
             />
           </View>
+          <View style={styles.journalButton}>
+            <Text style={styles.journalButtonText}>Explore</Text>
+          </View>
         </View>
       </View>
-      <JournalList />
-      <LoggerButton style={styles.logButton} callback={handleButtonPress} />
+      <JournalPostList />
     </View>
   );
 }
 
+HomeFeed.navigationOptions = {
+  header: null,
+};
+
+const dateFormatter = (date) => {
+  const mlist = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  return `${date.getDate()} ${mlist[date.getMonth()]}, ${date.getFullYear()}`;
+};
+
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
+    fontFamily: "Roboto",
+    flex: 1,
+  },
+  flexContainer: {
     flex: 1,
   },
   topContainer: {
+    paddingTop: 16,
     backgroundColor: "#F9ECFF",
     display: "flex",
     flexDirection: "row",
-    padding: 8,
-    paddingTop: 16,
   },
   topContainerLeft: {
     display: "flex",
-    flexDirection: "column",
+
     alignItems: "center",
-    justifyContent: "center",
     padding: 24,
   },
-  userName: {
-    fontSize: 29,
+  welcomeContainer: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  dateText: {
+    fontSize: 18,
+  },
+  welcomeText: {
+    fontSize: 24,
+    marginBottom: 32,
+  },
+  streakContainer: {
+    backgroundColor: "#7F3F98",
+    alignSelf: "flex-start",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: 7,
+    borderRadius: 12,
+  },
+  streakNumber: {
+    color: "white",
+    fontSize: 30,
+    lineHeight: 25,
+
     fontWeight: "bold",
   },
-  journalText: {
-    fontSize: 29,
-    fontWeight: "normal",
+  streakText: {
+    color: "white",
+    fontSize: 18,
   },
   topContainerRight: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    justifyContent: "center",
     padding: 8,
     marginLeft: "auto",
+    marginRight: 10,
   },
   welcomeImage: {
     width: 100,
     height: 100,
     resizeMode: "contain",
   },
-
-  logButton: {
-    position: "absolute",
-    bottom: 10,
-    right: 10,
+  journalButton: {
+    marginTop: 16,
+    backgroundColor: "transparent",
+    borderWidth: 1,
+    borderColor: "#7F3F98",
+    padding: 3.2,
+    borderRadius: 16,
+  },
+  journalButtonText: {
+    color: "#7F3F98",
+    fontSize: 20,
   },
 });
