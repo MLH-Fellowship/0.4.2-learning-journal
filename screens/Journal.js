@@ -2,7 +2,7 @@ import * as WebBrowser from "expo-web-browser";
 import * as React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 
-import ArticleList from "../components/Articles/ArticleList";
+import JournalPostList from "../components/Posts/JournalPostList";
 
 export default function HomeFeed() {
   const today = new Date();
@@ -25,11 +25,11 @@ export default function HomeFeed() {
             <Image source={require("../assets/images/avatar.png")} style={styles.welcomeImage} />
           </View>
           <View style={styles.journalButton}>
-            <Text style={styles.journalButtonText}>My Journal</Text>
+            <Text style={styles.journalButtonText}>Explore</Text>
           </View>
         </View>
       </View>
-      <ArticleList />
+      <JournalPostList />
     </View>
   );
 }
@@ -101,11 +101,7 @@ const styles = StyleSheet.create({
   streakNumber: {
     color: "white",
     fontSize: 30,
-<<<<<<< HEAD
-=======
-    lineHeight: 25,
 
->>>>>>> 8220865762bb0e9509b095d4d31a7172d650901e
     fontWeight: "bold",
   },
   streakText: {

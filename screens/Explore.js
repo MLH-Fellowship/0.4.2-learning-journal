@@ -3,15 +3,14 @@ import * as React from "react";
 import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 
-import JournalList from "../components/Posts/JournalPostList"
+import ArticleList from "../components/Articles/ArticleList"
 
 export default function JournalFeed() {
   return (
     <View style={styles.container}>
       <View style={styles.topContainer}>
         <View style={styles.topContainerLeft}>
-          <Text style={styles.userName}>Boi's</Text>
-          <Text style={styles.journalText}>Journal</Text>
+          <Text style={styles.userName}>Explore</Text>
         </View>
         <View style={styles.topContainerRight}>
           <View>
@@ -19,7 +18,7 @@ export default function JournalFeed() {
           </View>
         </View>
       </View>
-      <JournalList/>
+      <ArticleList/>
     </View>
   );
 }
