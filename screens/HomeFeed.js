@@ -101,6 +101,11 @@ const styles = StyleSheet.create({
   streakNumber: {
     color: "white",
     fontSize: 30,
+<<<<<<< HEAD
+=======
+    lineHeight: 25,
+
+>>>>>>> 8220865762bb0e9509b095d4d31a7172d650901e
     fontWeight: "bold",
   },
   streakText: {
