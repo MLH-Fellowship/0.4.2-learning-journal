@@ -17,13 +17,13 @@ export default function JournalFeed({ navigation }) {
   function handleButtonPress() {
     navigation.navigate("loggerModal");
   }
+  import ArticleList from "../components/Articles/ArticleList";
 
   return (
     <View style={styles.container}>
       <View style={styles.topContainer}>
         <View style={styles.topContainerLeft}>
-          <Text style={styles.userName}>Boi's</Text>
-          <Text style={styles.journalText}>Journal</Text>
+          <Text style={styles.userName}>Explore</Text>
         </View>
         <View style={styles.topContainerRight}>
           <View>
