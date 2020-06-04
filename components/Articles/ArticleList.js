@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {StyleSheet} from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 
 import ArticlePost from "./ArticlePost";
@@ -26,7 +26,7 @@ const mockdata = {
 export default function ArticleList() {
   return (
     <ScrollView style={styles.container}>
-      {mockdata.posts.map(post => <ArticlePost article={post}/>)}
+      {mockdata.posts.map(post => <ArticlePost article={post} key={post.id}/>)}
     </ScrollView>
   );
 }
@@ -34,8 +34,7 @@ export default function ArticleList() {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
-    fontFamily: "Roboto",
-    padding: "1.5rem",
+    padding: 24,
     flex: 1,
   },
 });

@@ -1,40 +1,58 @@
 import * as React from "react";
-import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Image,
+  ImageBackground,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import * as WebBrowser from "expo-web-browser";
-import { ScrollView } from "react-native-gesture-handler";
 
-import BG from "../../assets/images/bg.png";
-
-export default function ArticlePost({article}) {
-  const date = dateFormatter(article.date)
+export default function ArticlePost({ article }) {
+  const date = dateFormatter(article.date);
   return (
     <View style={styles.container}>
       <View style={styles.containerOut}>
-        <View style={styles.dateContainer}>
-          <Text style={styles.dateDay}>{date[1]}</Text>
-          <Text style={styles.dateMonth}>{date[0]}</Text>
-        </View>
-        <View style={styles.ArticleContainer}>
-          <View style={styles.postMeta}>
-            <Text style={styles.articleTitle}>{article.title}</Text>
-            <Text style={styles.articleDesc}>{article.description}</Text>
+        <ImageBackground source={require("../../assets/images/bg.png")} style={styles.image}>
+          <View style={styles.dateContainer}>
+            <Text style={styles.dateDay}>{date[1]}</Text>
+            <Text style={styles.dateMonth}>{date[0]}</Text>
           </View>
-          <View style={styles.postInteract}>
-          <Image source={require("../../assets/images/heart.png")} style={styles.welcomeImage} />
-          <View style={styles.journalButton}>
-              <Text style={styles.journalButtonText} onPress={handleLearnMorePress(article.url)}>Read</Text>
+          <View style={styles.ArticleContainer}>
+            <View style={styles.postMeta}>
+              <Text style={styles.articleTitle}>{article.title}</Text>
+              <Text style={styles.articleDesc}>{article.description}</Text>
+            </View>
+            <View style={styles.postInteract}>
+              <View style={styles.journalButton}>
+                <Text style={styles.journalButtonText}>Read</Text>
+              </View>
             </View>
           </View>
-        </View>
+        </ImageBackground>
       </View>
     </View>
   );
 }
 
-const dateFormatter = raw_date => {
+const dateFormatter = (raw_date) => {
   const date = new Date(raw_date);
-  return [date.toLocaleString('default', { month: 'short' }), date.getDate()];
-}
+  const mlist = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  return [mlist[date.getMonth()], date.getDate()];
+};
 
 function handleLearnMorePress(url) {
   WebBrowser.openBrowserAsync(url);
@@ -42,86 +60,83 @@ function handleLearnMorePress(url) {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
-    fontFamily: "Roboto",
-    marginBottom: "1.5rem"
+    marginBottom: 24,
+  },
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
   },
   containerOut: {
     backgroundColor: "#F9ECFF",
-    backgroundImage: `url(${BG})`,
-    backgroundSize: "cover",
-    height: "fit-content",
-    padding: "1rem",
-    borderRadius: "1rem",
-    boxShadow: "0px 1px 4px rgba(0, 0, 0, 0.25)"
+    padding: 16,
+    borderRadius: 16,
   },
   dateContainer: {
     backgroundColor: "white",
     display: "flex",
-    width: "fit-content",
-    paddingTop: "0.4rem",
-    paddingBottom: "0.4rem",
-    paddingLeft: "0.9rem",
-    paddingRight: "0.9rem",
+    alignSelf: "flex-start",
+    paddingTop: 3.2,
+    paddingBottom: 3.2,
+    paddingLeft: 15,
+    paddingRight: 15,
     flexDirection: "column",
     alignItems: "center",
-    boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
-    borderRadius: "0.7rem",
+    borderRadius: 14,
     marginLeft: "auto",
   },
   dateDay: {
-    fontSize: "1.6rem",
+    fontSize: 25,
     fontWeight: "bold",
-    lineHeight: "25px"
+    lineHeight: 25,
   },
   dateMonth: {
-    fontSize: "1.1rem",
+    fontSize: 18,
   },
   ArticleContainer: {
     backgroundColor: "rgba(127, 63, 152, 0.95)",
-    padding: "1rem",
-    borderRadius: "1rem",
-    marginTop:"1rem",
-    display: "grid",
-    gridTemplateColumns: "2fr 1fr"
-  },
-  articleTitle:{
-      color: "white",
-      fontSize: "1.4rem",
-  },
-  articleDesc:{
-    color: "white",
-    fontSize: "1rem",
-    fontWeight: "light"
-  },
-  titleContainer:{
-      width: "65%"
-  },
-  titleHeart:{
-  },
-  welcomeImage: {
-    width: 30,
-    height: 30,
-    resizeMode: "contain",
-  },
-  postInteract:{
+    padding: 16,
+    borderRadius: 16,
+    marginTop: 16,
     display: "flex",
     flexDirection: "column",
+  },
+  postMeta: {
+    marginBottom: 10,
+  },
+  articleTitle: {
+    color: "white",
+    fontSize: 20,
+  },
+  articleDesc: {
+    color: "white",
+    fontSize: 14,
+    fontWeight: "300",
+  },
+  titleHeart: {},
+  welcomeImage: {
+    width: 27,
+    height: 27,
+    resizeMode: "contain",
+  },
+  postInteract: {
+    display: "flex",
+    flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center"
   },
   journalButton: {
-    marginTop: "1rem",
+    marginLeft: "auto",
     backgroundColor: "transparent",
-    borderWidth: "1px",
+    borderWidth: 1,
     borderColor: "white",
-    paddingTop: "0.3rem",
-    paddingBottom: "0.3rem",
-    paddingLeft: "0.8rem",
-    paddingRight: "0.8rem",
-    borderRadius: "1rem",
+    paddingTop: 3,
+    paddingBottom: 3,
+    paddingLeft: 13,
+    paddingRight: 13,
+    borderRadius: 16,
   },
   journalButtonText: {
     color: "white",
-    fontSize: "1.3rem",
+    fontSize: 20,
   },
 });

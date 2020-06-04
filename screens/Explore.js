@@ -3,15 +3,14 @@ import * as React from "react";
 import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 
-import JournalList from "../components/Posts/JournalPostList"
+import ArticleList from "../components/Articles/ArticleList"
 
 export default function JournalFeed() {
   return (
     <View style={styles.container}>
       <View style={styles.topContainer}>
         <View style={styles.topContainerLeft}>
-          <Text style={styles.userName}>Boi's</Text>
-          <Text style={styles.journalText}>Journal</Text>
+          <Text style={styles.userName}>Explore</Text>
         </View>
         <View style={styles.topContainerRight}>
           <View>
@@ -19,7 +18,7 @@ export default function JournalFeed() {
           </View>
         </View>
       </View>
-      <JournalList/>
+      <ArticleList/>
     </View>
   );
 }
@@ -27,29 +26,28 @@ export default function JournalFeed() {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
-    fontFamily: "Roboto",
     flex: 1,
   },
   topContainer: {
     backgroundColor: "#F9ECFF",
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr",
-    padding: "0.5rem"
+    display: "flex",
+    flexDirection: "row",
+    padding: 8,
+    paddingTop: 16
   },
   topContainerLeft: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    padding: "1.5rem",
+    padding: 24
   },
   userName:{
-      fontSize: "1.8rem",
+      fontSize: 29,
       fontWeight: "bold",
-      lineHeight: "20px"
   },
   journalText:{
-    fontSize: "1.8rem",
+    fontSize: 29,
     fontWeight: "normal"
 },
   topContainerRight: {
@@ -57,7 +55,8 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    padding: "0.5rem",
+    padding: 8,
+    marginLeft: "auto"
   },
   welcomeImage: {
     width: 100,
