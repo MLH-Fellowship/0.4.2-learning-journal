@@ -12,14 +12,22 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-export default function JournalLogger({}) {
+export default function JournalLogger({ navigation, callback }) {
   const [titleText, setTitleText] = useState("");
   const [descText, setDescText] = useState("");
 
-  const submitHandler = (e) => {};
+  const submitHandler = () => {
+    callback(titleText, descText);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
+      <TouchableOpacity
+        style={styles.cancelButton}
+        onPress={() => navigation.goBack()}
+      >
+        <Text style={{ fontSize: 16, padding: 5, color: "white" }}>Cancel</Text>
+      </TouchableOpacity>
       <Text style={styles.headerText}>Add Entry</Text>
       <KeyboardAvoidingView style={{ flex: 0.9 }} behavior="padding">
         <TouchableWithoutFeedback
@@ -123,5 +131,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     height: 40,
     borderRadius: 20,
+  },
+
+  cancelButton: {
+    width: "30%",
+    margin: 10,
+    alignItems: "center",
+    backgroundColor: Color.newkRed,
+    alignSelf: "flex-end",
+    borderRadius: 8,
   },
 });
