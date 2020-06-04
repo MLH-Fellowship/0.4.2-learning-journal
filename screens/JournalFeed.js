@@ -27,14 +27,14 @@ export default function JournalFeed() {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
-    fontFamily: "Roboto",
     flex: 1,
   },
   topContainer: {
     backgroundColor: "#F9ECFF",
     display: "flex",
     flexDirection: "row",
-    padding: 8
+    padding: 8,
+    paddingTop: 16
   },
   topContainerLeft: {
     display: "flex",
@@ -46,7 +46,6 @@ const styles = StyleSheet.create({
   userName:{
       fontSize: 29,
       fontWeight: "bold",
-      lineHeight: 20
   },
   journalText:{
     fontSize: 29,

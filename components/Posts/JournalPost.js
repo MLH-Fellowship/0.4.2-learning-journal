@@ -1,15 +1,10 @@
 import * as React from "react";
 import {
-  Image,
-  Platform,
   ImageBackground,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
 } from "react-native";
-import * as WebBrowser from "expo-web-browser";
-import { ScrollView } from "react-native-gesture-handler";
 
 export default function JournalPost({ post }) {
   const date = dateFormatter(post.date);
@@ -42,7 +37,6 @@ const dateFormatter = (raw_date) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
-    fontFamily: "Roboto",
     marginBottom: 24,
   },
   image: {
@@ -66,7 +60,8 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     borderRadius: 14,
-    margin: 16
+    margin: 16,
+    marginBottom: 5
   },
   date: {
     fontSize: 18,
@@ -75,10 +70,11 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(127, 63, 152, 0.95)",
     padding: 16,
     borderRadius: 18,
+    margin: 10
   },
   postContent: {
     color: "white",
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "300",
   },
 });
