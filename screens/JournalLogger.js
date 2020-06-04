@@ -12,13 +12,16 @@ import {
   Keyboard,
   TouchableOpacity,
 } from "react-native";
+import CreateJournalMutation from "../components/Posts/mutations/CreateJournalMutation"
 
 export default function JournalLogger({ navigation, callback }) {
   const [titleText, setTitleText] = useState("");
   const [descText, setDescText] = useState("");
 
   const submitHandler = () => {
-    callback(titleText, descText);
+    // console.log(titleText, descText)
+    CreateJournalMutation(titleText, descText)
+    // callback(titleText, descText);
   };
 
   return (
@@ -44,7 +47,7 @@ export default function JournalLogger({ navigation, callback }) {
               style={styles.textInput}
               placeholder="Enter a title!"
               placeholderTextColor={Color.purple}
-              onChange={(e) => setTitleText(e.target.value)}
+              onChangeText={text => setTitleText(text)}
             />
             <TextInput
               value={descText}
@@ -59,7 +62,7 @@ export default function JournalLogger({ navigation, callback }) {
                   overflow: "scroll",
                 },
               ]}
-              onChange={(e) => setDescText(e.target.value)}
+              onChangeText={text=>setDescText(text)}
             />
           </View>
         </TouchableWithoutFeedback>

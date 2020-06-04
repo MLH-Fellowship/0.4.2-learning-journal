@@ -3,7 +3,8 @@ import { ImageBackground, StyleSheet, Text, View } from "react-native";
 import { createFragmentContainer, graphql } from "react-relay";
 
 function JournalPost({ journal }) {
-  // const date = dateFormatter(post.date);
+  const date = dateFormatter(journal.date_created);
+  console.log(date)
   return (
     <View style={styles.container}>
       <View style={styles.containerOut}>
@@ -12,11 +13,12 @@ function JournalPost({ journal }) {
           style={styles.image}
         >
           <View style={styles.dateContainer}>
-            {/* <Text style={styles.date}>{date}</Text> */}
+            <Text style={styles.date}>{date}</Text>
           </View>
           <View style={styles.PostContainer}>
             <View style={styles.postMeta}>
-              <Text style={styles.postContent}>{journal.title}</Text>
+              <Text style={styles.articleTitle}>{journal.title}</Text>
+              <Text style={styles.postContent}>{journal.description}</Text>
             </View>
           </View>
         </ImageBackground>
@@ -88,14 +90,19 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "300",
   },
+  articleTitle: {
+    color: "white",
+    fontSize: 20,
+  },
 });
 
 export default createFragmentContainer(JournalPost, {
   journal: graphql`
-    fragment JournalPost_journal on DemoJournal {
-      _id
+    fragment JournalPost_journal on journal {
+      id
       title
       description
+      date_created
     }
   `,
 });

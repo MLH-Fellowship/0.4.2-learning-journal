@@ -11,10 +11,11 @@ import type { ConcreteRequest } from 'relay-runtime';
 type JournalPost_journal$ref = any;
 export type JournalsQueryVariables = {||};
 export type JournalsQueryResponse = {|
-  +demoJournals: $ReadOnlyArray<?{|
-    +_id: ?any,
-    +title: ?string,
-    +description: ?string,
+  +journal: $ReadOnlyArray<{|
+    +id: any,
+    +title: string,
+    +description: string,
+    +date_created: ?any,
     +$fragmentRefs: JournalPost_journal$ref,
   |}>
 |};
@@ -27,18 +28,20 @@ export type JournalsQuery = {|
 
 /*
 query JournalsQuery {
-  demoJournals {
-    _id
+  journal {
+    id
     title
     description
+    date_created
     ...JournalPost_journal
   }
 }
 
-fragment JournalPost_journal on DemoJournal {
-  _id
+fragment JournalPost_journal on journal {
+  id
   title
   description
+  date_created
 }
 */
 
@@ -47,7 +50,7 @@ var v0 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "_id",
+  "name": "id",
   "storageKey": null
 },
 v1 = {
@@ -63,6 +66,13 @@ v2 = {
   "kind": "ScalarField",
   "name": "description",
   "storageKey": null
+},
+v3 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "date_created",
+  "storageKey": null
 };
 return {
   "fragment": {
@@ -74,14 +84,15 @@ return {
       {
         "alias": null,
         "args": null,
-        "concreteType": "DemoJournal",
+        "concreteType": "journal",
         "kind": "LinkedField",
-        "name": "demoJournals",
+        "name": "journal",
         "plural": true,
         "selections": [
           (v0/*: any*/),
           (v1/*: any*/),
           (v2/*: any*/),
+          (v3/*: any*/),
           {
             "args": null,
             "kind": "FragmentSpread",
@@ -91,7 +102,7 @@ return {
         "storageKey": null
       }
     ],
-    "type": "Query"
+    "type": "query_root"
   },
   "kind": "Request",
   "operation": {
@@ -102,14 +113,15 @@ return {
       {
         "alias": null,
         "args": null,
-        "concreteType": "DemoJournal",
+        "concreteType": "journal",
         "kind": "LinkedField",
-        "name": "demoJournals",
+        "name": "journal",
         "plural": true,
         "selections": [
           (v0/*: any*/),
           (v1/*: any*/),
-          (v2/*: any*/)
+          (v2/*: any*/),
+          (v3/*: any*/)
         ],
         "storageKey": null
       }
@@ -120,11 +132,11 @@ return {
     "metadata": {},
     "name": "JournalsQuery",
     "operationKind": "query",
-    "text": "query JournalsQuery {\n  demoJournals {\n    _id\n    title\n    description\n    ...JournalPost_journal\n  }\n}\n\nfragment JournalPost_journal on DemoJournal {\n  _id\n  title\n  description\n}\n"
+    "text": "query JournalsQuery {\n  journal {\n    id\n    title\n    description\n    date_created\n    ...JournalPost_journal\n  }\n}\n\nfragment JournalPost_journal on journal {\n  id\n  title\n  description\n  date_created\n}\n"
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '6099f75ed52f767d03b11115cfd5e147';
+(node/*: any*/).hash = '46d6fe45da829acf7f3ae2e28cf6f095';
 
 module.exports = node;

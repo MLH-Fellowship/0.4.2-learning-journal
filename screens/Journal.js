@@ -54,12 +54,12 @@ export default function HomeFeed({navigation}) {
             </View>
           );
         } else if (props) {
-          console.log(props.demoJournals[0].title);
+          // console.log(props.demoJournals[0].createdAt);
           return (
             <View style={styles.container}>
               <Header />
               {/* <Text>props {JSON.stringify(props.demoJournals)}</Text> */}
-              <JournalPostList journal={props.demoJournals} />
+              <JournalPostList journal={props.journal} />
               <LoggerButton style={styles.logButton} callback={handleButtonPress} />
             </View>
           );
@@ -77,10 +77,11 @@ export default function HomeFeed({navigation}) {
 
 const JournalsQuery = graphql`
   query JournalsQuery {
-    demoJournals {
-      _id
+    journal {
+      id
       title
       description
+      date_created
       ...JournalPost_journal
     }
   }
