@@ -1,43 +1,58 @@
 import * as React from "react";
-import { Image, Platform,ImageBackground,  StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Image,
+  ImageBackground,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import * as WebBrowser from "expo-web-browser";
-import { ScrollView } from "react-native-gesture-handler";
 
-import BG from "../../assets/images/bg.png";
-
-export default function ArticlePost({article}) {
-  const date = dateFormatter(article.date)
+export default function ArticlePost({ article }) {
+  const date = dateFormatter(article.date);
   return (
     <View style={styles.container}>
       <View style={styles.containerOut}>
-      <ImageBackground source={require("../../assets/images/bg.png")} style={styles.image}>
-        <View style={styles.dateContainer}>
-          <Text style={styles.dateDay}>{date[1]}</Text>
-          <Text style={styles.dateMonth}>{date[0]}</Text>
-        </View>
-        <View style={styles.ArticleContainer}>
-          <View style={styles.postMeta}>
-            <Text style={styles.articleTitle}>{article.title}</Text>
-            <Text style={styles.articleDesc}>{article.description}</Text>
+        <ImageBackground source={require("../../assets/images/bg.png")} style={styles.image}>
+          <View style={styles.dateContainer}>
+            <Text style={styles.dateDay}>{date[1]}</Text>
+            <Text style={styles.dateMonth}>{date[0]}</Text>
           </View>
-          <View style={styles.postInteract}>
-          <Image source={require("../../assets/images/heart.png")} style={styles.welcomeImage} />
-          <View style={styles.journalButton}>
-              <Text style={styles.journalButtonText}>Read</Text>
+          <View style={styles.ArticleContainer}>
+            <View style={styles.postMeta}>
+              <Text style={styles.articleTitle}>{article.title}</Text>
+              <Text style={styles.articleDesc}>{article.description}</Text>
+            </View>
+            <View style={styles.postInteract}>
+              <View style={styles.journalButton}>
+                <Text style={styles.journalButtonText}>Read</Text>
+              </View>
             </View>
           </View>
-        </View>
         </ImageBackground>
       </View>
     </View>
   );
 }
 
-const dateFormatter = raw_date => {
+const dateFormatter = (raw_date) => {
   const date = new Date(raw_date);
-  const mlist = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+  const mlist = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
   return [mlist[date.getMonth()], date.getDate()];
-}
+};
 
 function handleLearnMorePress(url) {
   WebBrowser.openBrowserAsync(url);
@@ -45,8 +60,7 @@ function handleLearnMorePress(url) {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
-    fontFamily: "Roboto",
-    marginBottom: 24
+    marginBottom: 24,
   },
   image: {
     flex: 1,
@@ -61,7 +75,7 @@ const styles = StyleSheet.create({
   dateContainer: {
     backgroundColor: "white",
     display: "flex",
-    alignSelf: 'flex-start',
+    alignSelf: "flex-start",
     paddingTop: 3.2,
     paddingBottom: 3.2,
     paddingLeft: 15,
@@ -74,7 +88,7 @@ const styles = StyleSheet.create({
   dateDay: {
     fontSize: 25,
     fontWeight: "bold",
-    lineHeight: 25
+    lineHeight: 25,
   },
   dateMonth: {
     fontSize: 18,
@@ -83,39 +97,35 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(127, 63, 152, 0.95)",
     padding: 16,
     borderRadius: 16,
-    marginTop:16,
+    marginTop: 16,
     display: "flex",
-    flexDirection: "row"
-
+    flexDirection: "column",
   },
-  articleTitle:{
-      color: "white",
-      fontSize: 20,
-      maxWidth: "70%"
+  postMeta: {
+    marginBottom: 10,
   },
-  articleDesc:{
+  articleTitle: {
+    color: "white",
+    fontSize: 20,
+  },
+  articleDesc: {
     color: "white",
     fontSize: 14,
     fontWeight: "300",
-    maxWidth: "75%"
   },
-  titleContainer:{
-      width: "75%"
-  },
-  titleHeart:{
-  },
+  titleHeart: {},
   welcomeImage: {
-    width: 30,
-    height: 30,
+    width: 27,
+    height: 27,
     resizeMode: "contain",
   },
-  postInteract:{
+  postInteract: {
     display: "flex",
-    flexDirection: "column",
-    justifyContent: "center"
+    flexDirection: "row",
+    alignItems: "center",
   },
   journalButton: {
-    marginTop: 16,
+    marginLeft: "auto",
     backgroundColor: "transparent",
     borderWidth: 1,
     borderColor: "white",
@@ -124,7 +134,6 @@ const styles = StyleSheet.create({
     paddingLeft: 13,
     paddingRight: 13,
     borderRadius: 16,
-    marginLeft: -20
   },
   journalButtonText: {
     color: "white",

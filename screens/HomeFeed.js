@@ -1,38 +1,35 @@
 import * as WebBrowser from "expo-web-browser";
 import * as React from "react";
-import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
+import { Image, StyleSheet, Text, View } from "react-native";
 
-import { MonoText } from "../components/StyledText";
-
-import ArticleList from "../components/Articles/ArticleList"
+import ArticleList from "../components/Articles/ArticleList";
 
 export default function HomeFeed() {
+  const today = new Date();
+  const date = dateFormatter(today);
   return (
     <View style={styles.container}>
-        <View style={styles.topContainer}>
-          <View style={styles.topContainerLeft}>
-            <View style={styles.welcomeContainer}>
-              <Text style={styles.dateText}>2nd June, 2020</Text>
-              <Text style={styles.welcomeText}>
-                Hello, Boi!
-              </Text>
-            </View>
-            <View style={styles.streakContainer}>
-              <Text style={styles.streakNumber}>12</Text>
-              <Text style={styles.streakText}>Days Streak</Text>
-            </View>
+      <View style={styles.topContainer}>
+        <View style={styles.topContainerLeft}>
+          <View style={styles.welcomeContainer}>
+            <Text style={styles.dateText}>{date}</Text>
+            <Text style={styles.welcomeText}>Hello, Boi!</Text>
           </View>
-          <View style={styles.topContainerRight}>
-            <View>
-              <Image source={require("../assets/images/avatar.png")} style={styles.welcomeImage} />
-            </View>
-            <View style={styles.journalButton}>
-              <Text style={styles.journalButtonText}>My Journal</Text>
-            </View>
+          <View style={styles.streakContainer}>
+            <Text style={styles.streakNumber}>12</Text>
+            <Text style={styles.streakText}>Days Streak</Text>
           </View>
         </View>
-      <ArticleList/>
+        <View style={styles.topContainerRight}>
+          <View>
+            <Image source={require("../assets/images/avatar.png")} style={styles.welcomeImage} />
+          </View>
+          <View style={styles.journalButton}>
+            <Text style={styles.journalButtonText}>My Journal</Text>
+          </View>
+        </View>
+      </View>
+      <ArticleList />
     </View>
   );
 }
@@ -41,16 +38,35 @@ HomeFeed.navigationOptions = {
   header: null,
 };
 
+const dateFormatter = (date) => {
+  const mlist = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  return `${date.getDate()} ${mlist[date.getMonth()]}, ${date.getFullYear()}`;
+};
+
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
     fontFamily: "Roboto",
-    flex: 1
+    flex: 1,
   },
-  flexContainer:{
-      flex:1
+  flexContainer: {
+    flex: 1,
   },
   topContainer: {
+    paddingTop: 16,
     backgroundColor: "#F9ECFF",
     display: "flex",
     flexDirection: "row",
@@ -75,18 +91,21 @@ const styles = StyleSheet.create({
   },
   streakContainer: {
     backgroundColor: "#7F3F98",
-    alignSelf: 'flex-start',
+    alignSelf: "flex-start",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    padding: 3.2,
-    borderRadius: 16,
+    padding: 7,
+    borderRadius: 12,
   },
   streakNumber: {
     color: "white",
     fontSize: 30,
+<<<<<<< HEAD
+=======
     lineHeight: 25,
 
+>>>>>>> 8220865762bb0e9509b095d4d31a7172d650901e
     fontWeight: "bold",
   },
   streakText: {
@@ -99,7 +118,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 8,
     marginLeft: "auto",
-    marginRight: 10
+    marginRight: 10,
   },
   welcomeImage: {
     width: 100,
@@ -112,7 +131,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#7F3F98",
     padding: 3.2,
-    borderRadius: 16
+    borderRadius: 16,
   },
   journalButtonText: {
     color: "#7F3F98",
