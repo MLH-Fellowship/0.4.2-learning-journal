@@ -2,7 +2,7 @@ import * as WebBrowser from "expo-web-browser";
 import * as React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 
-import JournalPostList from "../components/Posts/JournalPostList";
+import ArticlePostList from "../components/Articles/ArticleList";
 
 export default function HomeFeed() {
   const today = new Date();
@@ -32,7 +32,7 @@ export default function HomeFeed() {
           </View>
         </View>
       </View>
-      <JournalPostList />
+      <ArticlePostList />
     </View>
   );
 }

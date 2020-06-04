@@ -4,8 +4,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
 
 import TabBarIcon from "../components/TabBarIcon";
-import Explore from "../screens/Explore";
-import JournalFeed from "../screens/Journal";
+import Explore from "../screens/Journal";
+import JournalFeed from "../screens/Explore";
 import Logger from "../screens/JournalLogger";
 
 const BottomTab = createBottomTabNavigator();
