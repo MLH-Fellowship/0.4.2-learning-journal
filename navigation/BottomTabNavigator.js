@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import * as React from "react";
 
 import TabBarIcon from '../components/TabBarIcon';
-import Journal from '../screens/Journal';
+import Journal from '../components/Login';
 import Explore from '../screens/Explore';
 
 const BottomTab = createBottomTabNavigator();
