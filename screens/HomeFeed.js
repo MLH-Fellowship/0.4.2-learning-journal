@@ -22,7 +22,10 @@ export default function HomeFeed() {
         </View>
         <View style={styles.topContainerRight}>
           <View>
-            <Image source={require("../assets/images/avatar.png")} style={styles.welcomeImage} />
+            <Image
+              source={require("../assets/images/avatar.png")}
+              style={styles.welcomeImage}
+            />
           </View>
           <View style={styles.journalButton}>
             <Text style={styles.journalButtonText}>My Journal</Text>
@@ -101,11 +104,8 @@ const styles = StyleSheet.create({
   streakNumber: {
     color: "white",
     fontSize: 30,
-<<<<<<< HEAD
-=======
     lineHeight: 25,
 
->>>>>>> 8220865762bb0e9509b095d4d31a7172d650901e
     fontWeight: "bold",
   },
   streakText: {

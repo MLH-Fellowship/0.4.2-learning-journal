@@ -13,4 +13,5 @@ export default {
   noticeText: "#fff",
   lightPurple: "#f9ecff",
   purple: "#7f3f98",
+  darkPurple: "#440a45",
 };
