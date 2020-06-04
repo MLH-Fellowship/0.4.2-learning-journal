@@ -31,14 +31,12 @@ const dateFormatter = (raw_date) => {
   const mlist = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
   const date = new Date(raw_date);
   return `${date.getDate()} ${mlist[date.getMonth()]}, ${date.getFullYear()}`;
-<<<<<<< HEAD
 };
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
-=======
->>>>>>> 8220865762bb0e9509b095d4d31a7172d650901e
+
     marginBottom: 24,
   },
   image: {
