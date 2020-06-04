@@ -4,15 +4,10 @@ import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
 
 import TabBarIcon from "../components/TabBarIcon";
-<<<<<<< HEAD
-import HomeScreen from "../screens/HomeScreen";
-import LinksScreen from "../screens/LinksScreen";
-=======
 import HomeFeed from "../screens/HomeFeed";
 import JournalFeed from "../screens/JournalFeed";
 import Logger from "../screens/JournalLogger";
 
->>>>>>> master
 const BottomTab = createBottomTabNavigator();
 const RootStack = createStackNavigator();
 const INITIAL_ROUTE_NAME = "Home";
