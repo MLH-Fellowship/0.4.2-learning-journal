@@ -77,7 +77,7 @@ export default function HomeFeed({navigation}) {
 
 const JournalsQuery = graphql`
   query JournalsQuery {
-    journal {
+    journal (order_by:{date_created:desc_nulls_last}) {
       id
       title
       description

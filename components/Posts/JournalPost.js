@@ -4,7 +4,6 @@ import { createFragmentContainer, graphql } from "react-relay";
 
 function JournalPost({ journal }) {
   const date = dateFormatter(journal.date_created);
-  console.log(date)
   return (
     <View style={styles.container}>
       <View style={styles.containerOut}>
