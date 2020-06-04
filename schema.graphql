@@ -1,0 +1,409 @@
+"""
+The `DateTime` scalar type represents a DateTime. The DateTime is serialized as an RFC 3339 quoted string
+"""
+scalar DateTime
+
+type DeleteManyPayload {
+  deletedCount: Int!
+}
+
+type DemoCollection {
+  _id: ObjectId
+  description: String
+  title: String
+}
+
+input DemoCollectionInsertInput {
+  _id: ObjectId
+  description: String
+  title: String
+}
+
+input DemoCollectionQueryInput {
+  description: String
+  title_nin: [String]
+  title_exists: Boolean
+  description_gt: String
+  title_ne: String
+  description_lte: String
+  OR: [DemoCollectionQueryInput!]
+  title_gt: String
+  _id_exists: Boolean
+  _id_nin: [ObjectId]
+  title_lt: String
+  _id_ne: ObjectId
+  title_lte: String
+  description_in: [String]
+  description_exists: Boolean
+  _id_in: [ObjectId]
+  _id_gt: ObjectId
+  title_gte: String
+  _id_lte: ObjectId
+  description_ne: String
+  _id_gte: ObjectId
+  description_nin: [String]
+  _id_lt: ObjectId
+  description_gte: String
+  description_lt: String
+  AND: [DemoCollectionQueryInput!]
+  title: String
+  _id: ObjectId
+  title_in: [String]
+}
+
+enum DemoCollectionSortByInput {
+  _ID_DESC
+  DESCRIPTION_ASC
+  DESCRIPTION_DESC
+  TITLE_ASC
+  TITLE_DESC
+  _ID_ASC
+}
+
+input DemoCollectionUpdateInput {
+  _id_unset: Boolean
+  description: String
+  description_unset: Boolean
+  title: String
+  title_unset: Boolean
+  _id: ObjectId
+}
+
+type DemoJournal {
+  _id: ObjectId
+  createdAt: DateTime
+  description: String
+  imageURL: String
+  likes: Int
+  owner: String
+  tags: [String]
+  title: String
+  updatedAt: DateTime
+}
+
+input DemoJournalInsertInput {
+  tags: [String]
+  updatedAt: DateTime
+  createdAt: DateTime
+  description: String
+  imageURL: String
+  owner: String
+  _id: ObjectId
+  likes: Int
+  title: String
+}
+
+input DemoJournalQueryInput {
+  updatedAt_in: [DateTime]
+  imageURL_nin: [String]
+  likes_gt: Int
+  createdAt_lt: DateTime
+  description_exists: Boolean
+  description_gt: String
+  createdAt_gt: DateTime
+  createdAt_exists: Boolean
+  imageURL_gt: String
+  OR: [DemoJournalQueryInput!]
+  owner_ne: String
+  likes_lt: Int
+  _id: ObjectId
+  _id_nin: [ObjectId]
+  _id_lte: ObjectId
+  _id_in: [ObjectId]
+  createdAt_nin: [DateTime]
+  title_gte: String
+  AND: [DemoJournalQueryInput!]
+  title_nin: [String]
+  owner_gt: String
+  description_in: [String]
+  updatedAt: DateTime
+  _id_ne: ObjectId
+  description_ne: String
+  title_in: [String]
+  description: String
+  likes_ne: Int
+  imageURL_gte: String
+  _id_gte: ObjectId
+  tags_exists: Boolean
+  owner_in: [String]
+  description_gte: String
+  title: String
+  updatedAt_gt: DateTime
+  likes_exists: Boolean
+  likes_nin: [Int]
+  owner_lte: String
+  owner_gte: String
+  createdAt_ne: DateTime
+  title_lte: String
+  title_gt: String
+  description_lt: String
+  likes_lte: Int
+  updatedAt_exists: Boolean
+  updatedAt_ne: DateTime
+  likes_in: [Int]
+  owner_exists: Boolean
+  imageURL_in: [String]
+  title_ne: String
+  updatedAt_nin: [DateTime]
+  title_lt: String
+  createdAt_lte: DateTime
+  imageURL: String
+  updatedAt_lt: DateTime
+  tags: [String]
+  likes_gte: Int
+  updatedAt_lte: DateTime
+  imageURL_lte: String
+  createdAt_in: [DateTime]
+  owner_nin: [String]
+  imageURL_lt: String
+  createdAt: DateTime
+  tags_nin: [String]
+  likes: Int
+  imageURL_ne: String
+  tags_in: [String]
+  owner: String
+  _id_exists: Boolean
+  _id_lt: ObjectId
+  owner_lt: String
+  _id_gt: ObjectId
+  description_nin: [String]
+  createdAt_gte: DateTime
+  title_exists: Boolean
+  imageURL_exists: Boolean
+  description_lte: String
+  updatedAt_gte: DateTime
+}
+
+enum DemoJournalSortByInput {
+  TITLE_DESC
+  OWNER_ASC
+  OWNER_DESC
+  _ID_DESC
+  LIKES_DESC
+  DESCRIPTION_ASC
+  DESCRIPTION_DESC
+  IMAGEURL_ASC
+  TITLE_ASC
+  UPDATEDAT_DESC
+  CREATEDAT_DESC
+  IMAGEURL_DESC
+  _ID_ASC
+  UPDATEDAT_ASC
+  CREATEDAT_ASC
+  LIKES_ASC
+}
+
+input DemoJournalUpdateInput {
+  updatedAt_unset: Boolean
+  _id_unset: Boolean
+  description_unset: Boolean
+  imageURL_unset: Boolean
+  tags_unset: Boolean
+  title: String
+  owner: String
+  title_unset: Boolean
+  imageURL: String
+  description: String
+  likes_inc: Int
+  likes_unset: Boolean
+  createdAt: DateTime
+  _id: ObjectId
+  owner_unset: Boolean
+  createdAt_unset: Boolean
+  updatedAt: DateTime
+  likes: Int
+  tags: [String]
+}
+
+type InsertManyPayload {
+  insertedIds: [ObjectId]!
+}
+
+type Journal {
+  _id: ObjectId
+  createdAt: DateTime
+  createdBy: String
+  description: String
+  imageURL: String
+  likes: Int
+  tags: [String]
+  title: String
+  updatedAt: DateTime
+}
+
+input JournalInsertInput {
+  createdAt: DateTime
+  createdBy: String
+  imageURL: String
+  title: String
+  tags: [String]
+  _id: ObjectId
+  likes: Int
+  description: String
+  updatedAt: DateTime
+}
+
+input JournalQueryInput {
+  description_in: [String]
+  AND: [JournalQueryInput!]
+  updatedAt_gt: DateTime
+  description_nin: [String]
+  imageURL_nin: [String]
+  title_nin: [String]
+  _id_gt: ObjectId
+  createdBy: String
+  description: String
+  imageURL: String
+  createdAt_exists: Boolean
+  likes_nin: [Int]
+  createdBy_lt: String
+  description_lte: String
+  createdAt_lt: DateTime
+  updatedAt_exists: Boolean
+  imageURL_ne: String
+  description_gte: String
+  description_gt: String
+  updatedAt_in: [DateTime]
+  description_ne: String
+  updatedAt_lte: DateTime
+  createdBy_gt: String
+  createdAt_gt: DateTime
+  likes_exists: Boolean
+  createdAt: DateTime
+  createdBy_in: [String]
+  createdBy_exists: Boolean
+  _id_ne: ObjectId
+  likes_lt: Int
+  imageURL_gte: String
+  tags: [String]
+  imageURL_lte: String
+  title_in: [String]
+  likes: Int
+  createdAt_in: [DateTime]
+  updatedAt_gte: DateTime
+  title: String
+  title_lt: String
+  imageURL_in: [String]
+  likes_in: [Int]
+  description_lt: String
+  title_lte: String
+  _id: ObjectId
+  imageURL_lt: String
+  imageURL_gt: String
+  title_exists: Boolean
+  likes_ne: Int
+  createdBy_lte: String
+  _id_nin: [ObjectId]
+  description_exists: Boolean
+  updatedAt_ne: DateTime
+  title_gte: String
+  tags_in: [String]
+  _id_lte: ObjectId
+  _id_in: [ObjectId]
+  OR: [JournalQueryInput!]
+  title_gt: String
+  tags_exists: Boolean
+  updatedAt_nin: [DateTime]
+  likes_lte: Int
+  imageURL_exists: Boolean
+  createdAt_ne: DateTime
+  _id_exists: Boolean
+  createdAt_gte: DateTime
+  _id_gte: ObjectId
+  createdBy_ne: String
+  createdAt_nin: [DateTime]
+  createdAt_lte: DateTime
+  createdBy_gte: String
+  _id_lt: ObjectId
+  likes_gt: Int
+  title_ne: String
+  updatedAt_lt: DateTime
+  tags_nin: [String]
+  likes_gte: Int
+  updatedAt: DateTime
+  createdBy_nin: [String]
+}
+
+enum JournalSortByInput {
+  TITLE_ASC
+  TITLE_DESC
+  LIKES_ASC
+  CREATEDAT_ASC
+  CREATEDBY_DESC
+  DESCRIPTION_DESC
+  LIKES_DESC
+  _ID_ASC
+  IMAGEURL_DESC
+  UPDATEDAT_ASC
+  _ID_DESC
+  CREATEDAT_DESC
+  CREATEDBY_ASC
+  DESCRIPTION_ASC
+  UPDATEDAT_DESC
+  IMAGEURL_ASC
+}
+
+input JournalUpdateInput {
+  title: String
+  description_unset: Boolean
+  updatedAt_unset: Boolean
+  tags_unset: Boolean
+  createdBy: String
+  description: String
+  title_unset: Boolean
+  createdBy_unset: Boolean
+  likes_unset: Boolean
+  _id_unset: Boolean
+  imageURL_unset: Boolean
+  likes: Int
+  imageURL: String
+  updatedAt: DateTime
+  likes_inc: Int
+  createdAt_unset: Boolean
+  _id: ObjectId
+  createdAt: DateTime
+  tags: [String]
+}
+
+type Mutation {
+  deleteManyDemoCollections(query: DemoCollectionQueryInput): DeleteManyPayload
+  deleteManyDemoJournals(query: DemoJournalQueryInput): DeleteManyPayload
+  deleteManyJournals(query: JournalQueryInput): DeleteManyPayload
+  deleteOneDemoCollection(query: DemoCollectionQueryInput!): DemoCollection
+  deleteOneDemoJournal(query: DemoJournalQueryInput!): DemoJournal
+  deleteOneJournal(query: JournalQueryInput!): Journal
+  insertManyDemoCollections(data: [DemoCollectionInsertInput!]!): InsertManyPayload
+  insertManyDemoJournals(data: [DemoJournalInsertInput!]!): InsertManyPayload
+  insertManyJournals(data: [JournalInsertInput!]!): InsertManyPayload
+  insertOneDemoCollection(data: DemoCollectionInsertInput!): DemoCollection
+  insertOneDemoJournal(data: DemoJournalInsertInput!): DemoJournal
+  insertOneJournal(data: JournalInsertInput!): Journal
+  replaceOneDemoCollection(query: DemoCollectionQueryInput, data: DemoCollectionInsertInput!): DemoCollection
+  replaceOneDemoJournal(query: DemoJournalQueryInput, data: DemoJournalInsertInput!): DemoJournal
+  replaceOneJournal(query: JournalQueryInput, data: JournalInsertInput!): Journal
+  updateManyDemoCollections(query: DemoCollectionQueryInput, set: DemoCollectionUpdateInput!): UpdateManyPayload
+  updateManyDemoJournals(query: DemoJournalQueryInput, set: DemoJournalUpdateInput!): UpdateManyPayload
+  updateManyJournals(query: JournalQueryInput, set: JournalUpdateInput!): UpdateManyPayload
+  updateOneDemoCollection(set: DemoCollectionUpdateInput!, query: DemoCollectionQueryInput): DemoCollection
+  updateOneDemoJournal(query: DemoJournalQueryInput, set: DemoJournalUpdateInput!): DemoJournal
+  updateOneJournal(query: JournalQueryInput, set: JournalUpdateInput!): Journal
+  upsertOneDemoCollection(data: DemoCollectionInsertInput!, query: DemoCollectionQueryInput): DemoCollection
+  upsertOneDemoJournal(query: DemoJournalQueryInput, data: DemoJournalInsertInput!): DemoJournal
+  upsertOneJournal(query: JournalQueryInput, data: JournalInsertInput!): Journal
+}
+
+scalar ObjectId
+
+type Query {
+  demoCollection(query: DemoCollectionQueryInput): DemoCollection
+  demoCollections(query: DemoCollectionQueryInput, limit: Int = 100, sortBy: DemoCollectionSortByInput): [DemoCollection]!
+  demoJournal(query: DemoJournalQueryInput): DemoJournal
+  demoJournals(query: DemoJournalQueryInput, limit: Int = 100, sortBy: DemoJournalSortByInput): [DemoJournal]!
+  journal(query: JournalQueryInput): Journal
+  journals(query: JournalQueryInput, limit: Int = 100, sortBy: JournalSortByInput): [Journal]!
+}
+
+type UpdateManyPayload {
+  matchedCount: Int!
+  modifiedCount: Int!
+}

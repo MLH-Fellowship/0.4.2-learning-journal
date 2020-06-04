@@ -1,38 +1,84 @@
 import * as WebBrowser from "expo-web-browser";
 import * as React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
+import { QueryRenderer, graphql } from "react-relay";
+import environment from "../api/Environment";
 
 import JournalPostList from "../components/Posts/JournalPostList";
 
-export default function HomeFeed() {
+const Header = () => {
   const today = new Date();
   const date = dateFormatter(today);
   return (
-    <View style={styles.container}>
-      <View style={styles.topContainer}>
-        <View style={styles.topContainerLeft}>
-          <View style={styles.welcomeContainer}>
-            <Text style={styles.dateText}>{date}</Text>
-            <Text style={styles.welcomeText}>Hello, Boi!</Text>
-          </View>
-          <View style={styles.streakContainer}>
-            <Text style={styles.streakNumber}>12</Text>
-            <Text style={styles.streakText}>Days Streak</Text>
-          </View>
+    <View style={styles.topContainer}>
+      <View style={styles.topContainerLeft}>
+        <View style={styles.welcomeContainer}>
+          <Text style={styles.dateText}>{date}</Text>
+          <Text style={styles.welcomeText}>Hello, Boi!</Text>
         </View>
-        <View style={styles.topContainerRight}>
-          <View>
-            <Image source={require("../assets/images/avatar.png")} style={styles.welcomeImage} />
-          </View>
-          <View style={styles.journalButton}>
-            <Text style={styles.journalButtonText}>Explore</Text>
-          </View>
+        <View style={styles.streakContainer}>
+          <Text style={styles.streakNumber}>12</Text>
+          <Text style={styles.streakText}>Days Streak</Text>
         </View>
       </View>
-      <JournalPostList />
+      <View style={styles.topContainerRight}>
+        <View>
+          <Image
+            source={require("../assets/images/avatar.png")}
+            style={styles.welcomeImage}
+          />
+        </View>
+        <View style={styles.journalButton}>
+          <Text style={styles.journalButtonText}>Explore</Text>
+        </View>
+      </View>
     </View>
   );
+};
+export default function HomeFeed() {
+  return (
+    <QueryRenderer
+      environment={environment}
+      query={JournalsQuery}
+      render={({ error, props }) => {
+        if (error) {
+          return (
+            <View style={styles.container}>
+              <Header />
+              <Text>Error {JSON.stringify(error.message)}</Text>
+            </View>
+          );
+        } else if (props) {
+          console.log(props.demoJournals[0].title);
+          return (
+            <View style={styles.container}>
+              <Header />
+              {/* <Text>props {JSON.stringify(props.demoJournals)}</Text> */}
+              <JournalPostList journal={props.demoJournals} />
+            </View>
+          );
+        }
+        return (
+          <View style={styles.container}>
+            <Header />
+            <Text>Loading</Text>
+          </View>
+        );
+      }}
+    />
+  );
 }
+
+const JournalsQuery = graphql`
+  query JournalsQuery {
+    demoJournals {
+      _id
+      title
+      description
+      ...JournalPost_journal
+    }
+  }
+`;
 
 HomeFeed.navigationOptions = {
   header: null,

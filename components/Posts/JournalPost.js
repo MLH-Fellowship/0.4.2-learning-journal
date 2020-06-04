@@ -1,34 +1,45 @@
 import * as React from "react";
-import {
-  ImageBackground,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { ImageBackground, StyleSheet, Text, View } from "react-native";
+import { createFragmentContainer, graphql } from "react-relay";
 
-export default function JournalPost({ post }) {
-  const date = dateFormatter(post.date);
+function JournalPost({ journal }) {
+  // const date = dateFormatter(post.date);
   return (
     <View style={styles.container}>
-
-        <View style={styles.containerOut}>
-        <ImageBackground source={require("../../assets/images/bg.png")} style={styles.image}>
+      <View style={styles.containerOut}>
+        <ImageBackground
+          source={require("../../assets/images/bg.png")}
+          style={styles.image}
+        >
           <View style={styles.dateContainer}>
-            <Text style={styles.date}>{date}</Text>
+            {/* <Text style={styles.date}>{date}</Text> */}
           </View>
           <View style={styles.PostContainer}>
             <View style={styles.postMeta}>
-              <Text style={styles.postContent}>{post.content}</Text>
+              <Text style={styles.postContent}>{journal.title}</Text>
             </View>
           </View>
-          </ImageBackground>
-        </View>
+        </ImageBackground>
+      </View>
     </View>
   );
 }
 
 const dateFormatter = (raw_date) => {
-  const mlist = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+  const mlist = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
   const date = new Date(raw_date);
   return `${date.getDate()} ${mlist[date.getMonth()]}, ${date.getFullYear()}`;
 };
@@ -52,7 +63,7 @@ const styles = StyleSheet.create({
   dateContainer: {
     backgroundColor: "white",
     display: "flex",
-    alignSelf: 'flex-start',
+    alignSelf: "flex-start",
     paddingTop: 3.2,
     paddingBottom: 3.2,
     paddingLeft: 15,
@@ -61,7 +72,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 14,
     margin: 16,
-    marginBottom: 5
+    marginBottom: 5,
   },
   date: {
     fontSize: 18,
@@ -70,11 +81,21 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(127, 63, 152, 0.95)",
     padding: 16,
     borderRadius: 18,
-    margin: 10
+    margin: 10,
   },
   postContent: {
     color: "white",
     fontSize: 16,
     fontWeight: "300",
   },
+});
+
+export default createFragmentContainer(JournalPost, {
+  journal: graphql`
+    fragment JournalPost_journal on DemoJournal {
+      _id
+      title
+      description
+    }
+  `,
 });

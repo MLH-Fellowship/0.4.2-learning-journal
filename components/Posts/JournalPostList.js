@@ -1,6 +1,7 @@
 import * as React from "react";
-import {StyleSheet} from "react-native";
+import { StyleSheet } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
+import { createFragmentContainer, graphql } from "react-relay";
 
 import JournalPost from "./JournalPost";
 
@@ -21,13 +22,15 @@ const mockdata = {
   ],
 };
 
-export default function JournalList() {
+export default JournalList = ({journal}) => {
   return (
     <ScrollView style={styles.container}>
-      {mockdata.posts.map(post => <JournalPost post={post} key={post.id}/>)}
+      {journal.map((post) => (
+        <JournalPost journal={post} key={post._id} />
+      ))}
     </ScrollView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -36,3 +39,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+
+// export default createFragmentContainer(JournalList, {
+//   journal: graphql`
+//     fragment JournalPostList_journal on DemoJournal {
+//       ...JournalPost_journal
+//     }
+//   `,
+// });
