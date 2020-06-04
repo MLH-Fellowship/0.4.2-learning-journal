@@ -5,6 +5,7 @@ import { QueryRenderer, graphql } from "react-relay";
 import environment from "../api/Environment";
 
 import JournalPostList from "../components/Posts/JournalPostList";
+import LoggerButton from "../components/Buttons/LoggerButton";
 
 const Header = () => {
   const today = new Date();
@@ -35,7 +36,10 @@ const Header = () => {
     </View>
   );
 };
-export default function HomeFeed() {
+export default function HomeFeed({navigation}) {
+  function handleButtonPress() {
+    navigation.navigate("loggerModal");
+  }
   return (
     <QueryRenderer
       environment={environment}
@@ -46,6 +50,7 @@ export default function HomeFeed() {
             <View style={styles.container}>
               <Header />
               <Text>Error {JSON.stringify(error.message)}</Text>
+              <LoggerButton style={styles.logButton} callback={handleButtonPress} />
             </View>
           );
         } else if (props) {
@@ -55,6 +60,7 @@ export default function HomeFeed() {
               <Header />
               {/* <Text>props {JSON.stringify(props.demoJournals)}</Text> */}
               <JournalPostList journal={props.demoJournals} />
+              <LoggerButton style={styles.logButton} callback={handleButtonPress} />
             </View>
           );
         }
@@ -178,5 +184,10 @@ const styles = StyleSheet.create({
   journalButtonText: {
     color: "#7F3F98",
     fontSize: 20,
+  },
+  logButton: {
+    position: "absolute",
+    bottom: 10,
+    right: 10,
   },
 });
