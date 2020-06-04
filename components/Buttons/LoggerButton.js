@@ -3,9 +3,12 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { TouchableOpacity, StyleSheet } from "react-native";
 import Color from "../../constants/Colors";
 
-export default function ({ style, size }) {
+export default function ({ style, size, callback }) {
   return (
-    <TouchableOpacity style={[{ ...style }, styles.buttonStyle]}>
+    <TouchableOpacity
+      style={[{ ...style }, styles.buttonStyle]}
+      onPress={callback}
+    >
       <MaterialIcons name="add" size={size || 30} color="white" />
     </TouchableOpacity>
   );

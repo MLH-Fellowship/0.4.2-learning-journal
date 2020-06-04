@@ -1,14 +1,18 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
+
 import * as React from "react";
 
 import TabBarIcon from "../components/TabBarIcon";
 import HomeFeed from "../screens/HomeFeed";
 import JournalFeed from "../screens/JournalFeed";
+import Logger from "../screens/JournalLogger";
 
 const BottomTab = createBottomTabNavigator();
+const RootStack = createStackNavigator();
 const INITIAL_ROUTE_NAME = "Home";
 
-export default function BottomTabNavigator({ navigation, route }) {
+function BottomTabNavigator({ navigation, route }) {
   // Set the header title on the parent stack navigator depending on the
   // currently active tab. Learn more in the documentation:
   // https://reactnavigation.org/docs/en/screen-options-resolution.html
@@ -37,6 +41,23 @@ export default function BottomTabNavigator({ navigation, route }) {
         }}
       />
     </BottomTab.Navigator>
+  );
+}
+
+export default function RootStackScreen() {
+  return (
+    <RootStack.Navigator mode="modal">
+      <RootStack.Screen
+        name="Main"
+        component={BottomTabNavigator}
+        options={{ headerShown: false }}
+      />
+      <RootStack.Screen
+        options={{ headerShown: false }}
+        name="loggerModal"
+        component={Logger}
+      />
+    </RootStack.Navigator>
   );
 }
 

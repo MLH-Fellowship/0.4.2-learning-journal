@@ -13,7 +13,11 @@ import LoggerButton from "../components/Buttons/LoggerButton";
 
 import JournalList from "../components/Posts/JournalPostList";
 
-export default function JournalFeed() {
+export default function JournalFeed({ navigation }) {
+  function handleButtonPress() {
+    navigation.navigate("loggerModal");
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.topContainer}>
@@ -31,7 +35,7 @@ export default function JournalFeed() {
         </View>
       </View>
       <JournalList />
-      <LoggerButton style={styles.logButton} />
+      <LoggerButton style={styles.logButton} callback={handleButtonPress} />
     </View>
   );
 }
