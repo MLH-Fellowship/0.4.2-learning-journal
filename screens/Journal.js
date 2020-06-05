@@ -1,24 +1,21 @@
 import * as WebBrowser from "expo-web-browser";
 import * as React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
+import { QueryRenderer, graphql } from "react-relay";
+import environment from "../api/Environment";
 
 import JournalPostList from "../components/Posts/JournalPostList";
+import LoggerButton from "../components/Buttons/LoggerButton";
 
-export default function HomeFeed() {
+const Header = () => {
   const today = new Date();
   const date = dateFormatter(today);
   return (
-    <View style={styles.container}>
-      <View style={styles.topContainer}>
-        <View style={styles.topContainerLeft}>
-          <View style={styles.welcomeContainer}>
-            <Text style={styles.dateText}>{date}</Text>
-            <Text style={styles.welcomeText}>Hello, Boi!</Text>
-          </View>
-          <View style={styles.streakContainer}>
-            <Text style={styles.streakNumber}>12</Text>
-            <Text style={styles.streakText}>Days Streak</Text>
-          </View>
+    <View style={styles.topContainer}>
+      <View style={styles.topContainerLeft}>
+        <View style={styles.welcomeContainer}>
+          <Text style={styles.dateText}>{date}</Text>
+          <Text style={styles.welcomeText}>Hello, Boi!</Text>
         </View>
         <View style={styles.topContainerRight}>
           <View>
@@ -32,10 +29,65 @@ export default function HomeFeed() {
           </View>
         </View>
       </View>
-      <JournalPostList />
     </View>
   );
+};
+export default function HomeFeed({ navigation }) {
+  function handleButtonPress() {
+    navigation.navigate("loggerModal");
+  }
+  return (
+    <QueryRenderer
+      environment={environment}
+      query={JournalsQuery}
+      render={({ error, props }) => {
+        if (error) {
+          return (
+            <View style={styles.container}>
+              <Header />
+              <Text>Error {JSON.stringify(error.message)}</Text>
+              <LoggerButton
+                style={styles.logButton}
+                callback={handleButtonPress}
+              />
+            </View>
+          );
+        } else if (props) {
+          // console.log(props.demoJournals[0].createdAt);
+          return (
+            <View style={styles.container}>
+              <Header />
+              {/* <Text>props {JSON.stringify(props.demoJournals)}</Text> */}
+              <JournalPostList journal={props.journal} />
+              <LoggerButton
+                style={styles.logButton}
+                callback={handleButtonPress}
+              />
+            </View>
+          );
+        }
+        return (
+          <View style={styles.container}>
+            <Header />
+            <Text>Loading</Text>
+          </View>
+        );
+      }}
+    />
+  );
 }
+
+const JournalsQuery = graphql`
+  query JournalsQuery {
+    journal(order_by: { date_created: desc_nulls_last }) {
+      id
+      title
+      description
+      date_created
+      ...JournalPost_journal
+    }
+  }
+`;
 
 HomeFeed.navigationOptions = {
   header: null,
@@ -104,10 +156,6 @@ const styles = StyleSheet.create({
   streakNumber: {
     color: "white",
     fontSize: 30,
-<<<<<<< HEAD:screens/HomeFeed.js
-    lineHeight: 25,
-=======
->>>>>>> 2ab1519b7c94d6d4c6143f19520822e0b6a0bc84:screens/Journal.js
 
     fontWeight: "bold",
   },
@@ -139,5 +187,10 @@ const styles = StyleSheet.create({
   journalButtonText: {
     color: "#7F3F98",
     fontSize: 20,
+  },
+  logButton: {
+    position: "absolute",
+    bottom: 10,
+    right: 10,
   },
 });

@@ -11,13 +11,12 @@ import {
 import { ScrollView } from "react-native-gesture-handler";
 import LoggerButton from "../components/Buttons/LoggerButton";
 
-import JournalList from "../components/Posts/JournalPostList";
+import ArticleList from "../components/Articles/ArticleList";
 
 export default function JournalFeed({ navigation }) {
   function handleButtonPress() {
     navigation.navigate("loggerModal");
   }
-  import ArticleList from "../components/Articles/ArticleList";
 
   return (
     <View style={styles.container}>
@@ -34,7 +33,7 @@ export default function JournalFeed({ navigation }) {
           </View>
         </View>
       </View>
-      <JournalList />
+      <ArticleList />
       <LoggerButton style={styles.logButton} callback={handleButtonPress} />
     </View>
   );

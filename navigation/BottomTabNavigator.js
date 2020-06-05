@@ -4,8 +4,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
 
 import TabBarIcon from "../components/TabBarIcon";
-import HomeFeed from "../screens/HomeFeed";
-import JournalFeed from "../screens/JournalFeed";
+import Journal from "../screens/Journal";
+import Explore from "../screens/Explore";
 import Logger from "../screens/JournalLogger";
 
 const BottomTab = createBottomTabNavigator();
@@ -22,7 +22,7 @@ function BottomTabNavigator({ navigation, route }) {
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
       <BottomTab.Screen
         name="Home"
-        component={HomeFeed}
+        component={Journal}
         options={{
           title: "Get Started",
           tabBarIcon: ({ focused }) => (
@@ -32,7 +32,7 @@ function BottomTabNavigator({ navigation, route }) {
       />
       <BottomTab.Screen
         name="Journal"
-        component={JournalFeed}
+        component={Explore}
         options={{
           title: "Resources",
           tabBarIcon: ({ focused }) => (
