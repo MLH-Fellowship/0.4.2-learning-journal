@@ -12,7 +12,9 @@ import {
 import { ScrollView } from "react-native-gesture-handler";
 import LoggerButton from "../components/Buttons/LoggerButton";
 import Heatmap from "../components/Heatmap";
-import JournalList from "../components/Posts/JournalPostList";
+import { QueryRenderer, graphql } from "react-relay";
+import environment from "../api/Environment";
+import JournalPostList from "../components/Posts/JournalPostList";
 
 const commitsData = [
   { date: "2020-06-02", count: 1 },
@@ -28,22 +30,72 @@ const commitsData = [
   { date: "2020-05-30", count: 4 },
 ];
 
-export default function JournalFeed({ navigation }) {
-  const [modalVisible, setModalVisible] = useState(false);
+// export default function JournalFeed({ navigation }) {
+//   const [modalVisible, setModalVisible] = useState(false);
 
-  function handleButtonPress() {
-    navigation.navigate("loggerModal");
-  }
+//   function handleButtonPress() {
+//     navigation.navigate("loggerModal");
+//   }
 
-  function handleHeatPress() {
-    setModalVisible(true);
-  }
+//   function handleHeatPress() {
+//     setModalVisible(true);
+//   }
 
+//   return (
+//     <View style={styles.container}>
+//       <View style={styles.topContainer}>
+//         <View style={styles.topContainerLeft}>
+//           <Text style={styles.userName}>Explore</Text>
+//         </View>
+//         <View style={styles.topContainerRight}>
+//           <View>
+//             <Image
+//               source={require("../assets/images/avatar.png")}
+//               style={styles.welcomeImage}
+//             />
+//           </View>
+//         </View>
+//       </View>
+//       <JournalList />
+//       <LoggerButton
+//         style={styles.logButton}
+//         callback={handleButtonPress}
+//         heatmapCallback={handleHeatPress}
+//       />
+//       <Modal animationType="slide" transparent visible={modalVisible}>
+//         <View style={styles.modalView}>
+//           <TouchableOpacity
+//             style={{ alignSelf: "flex-end" }}
+//             onPress={() => setModalVisible(false)}
+//           >
+//             <Text style={{ color: "red" }}>Close</Text>
+//           </TouchableOpacity>
+//           <Heatmap
+//             style={{
+//               flex: 1,
+//               alignItems: "center",
+//               justifyContent: "center",
+//               marginTop: 40,
+//             }}
+//             width={200}
+//             height={350}
+//             dateDetails={commitsData}
+//           />
+//         </View>
+//       </Modal>
+//     </View>
+//   );
+// }
+
+const Header = () => {
+  const today = new Date();
+  const date = dateFormatter(today);
   return (
-    <View style={styles.container}>
-      <View style={styles.topContainer}>
-        <View style={styles.topContainerLeft}>
-          <Text style={styles.userName}>Explore</Text>
+    <View style={styles.topContainer}>
+      <View style={styles.topContainerLeft}>
+        <View style={styles.welcomeContainer}>
+          <Text style={styles.dateText}>{date}</Text>
+          <Text style={styles.welcomeText}>Hello, Boi!</Text>
         </View>
         <View style={styles.topContainerRight}>
           <View>
@@ -52,42 +104,25 @@ export default function JournalFeed({ navigation }) {
               style={styles.welcomeImage}
             />
           </View>
+          <View style={styles.journalButton}>
+            <Text style={styles.journalButtonText}>Explore</Text>
+          </View>
         </View>
       </View>
-      <JournalList />
-      <LoggerButton
-        style={styles.logButton}
-        callback={handleButtonPress}
-        heatmapCallback={handleHeatPress}
-      />
-      <Modal animationType="slide" transparent visible={modalVisible}>
-        <View style={styles.modalView}>
-          <TouchableOpacity
-            style={{ alignSelf: "flex-end" }}
-            onPress={() => setModalVisible(false)}
-          >
-            <Text style={{ color: "red" }}>Close</Text>
-          </TouchableOpacity>
-          <Heatmap
-            style={{
-              flex: 1,
-              alignItems: "center",
-              justifyContent: "center",
-              marginTop: 40,
-            }}
-            width={200}
-            height={350}
-            dateDetails={commitsData}
-          />
-        </View>
-      </Modal>
     </View>
   );
-}
+};
+
 export default function HomeFeed({ navigation }) {
   function handleButtonPress() {
     navigation.navigate("loggerModal");
   }
+  const [modalVisible, setModalVisible] = useState(false);
+
+  function handleHeatPress() {
+    setModalVisible(true);
+  }
+
   return (
     <QueryRenderer
       environment={environment}
@@ -101,6 +136,7 @@ export default function HomeFeed({ navigation }) {
               <LoggerButton
                 style={styles.logButton}
                 callback={handleButtonPress}
+                heatmapCallback={handleHeatPress}
               />
             </View>
           );
@@ -114,7 +150,29 @@ export default function HomeFeed({ navigation }) {
               <LoggerButton
                 style={styles.logButton}
                 callback={handleButtonPress}
+                heatmapCallback={handleHeatPress}
               />
+              <Modal animationType="slide" transparent visible={modalVisible}>
+                <View style={styles.modalView}>
+                  <TouchableOpacity
+                    style={{ alignSelf: "flex-end" }}
+                    onPress={() => setModalVisible(false)}
+                  >
+                    <Text style={{ color: "red" }}>Close</Text>
+                  </TouchableOpacity>
+                  <Heatmap
+                    style={{
+                      flex: 1,
+                      alignItems: "center",
+                      justifyContent: "center",
+                      marginTop: 40,
+                    }}
+                    width={200}
+                    height={350}
+                    dateDetails={commitsData}
+                  />
+                </View>
+              </Modal>
             </View>
           );
         }
@@ -141,10 +199,6 @@ const JournalsQuery = graphql`
   }
 `;
 
-HomeFeed.navigationOptions = {
-  header: null,
-};
-
 const dateFormatter = (date) => {
   const mlist = [
     "Jan",
@@ -167,7 +221,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "flex-start",
   },
 
   centeredView: {
@@ -182,6 +236,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     padding: 8,
     paddingTop: 16,
+    width: "100%",
   },
   topContainerLeft: {
     display: "flex",
