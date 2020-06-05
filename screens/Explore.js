@@ -34,7 +34,7 @@ export default function JournalFeed({ navigation }) {
         </View>
       </View>
       <ArticleList />
-      <LoggerButton style={styles.logButton} callback={handleButtonPress} />
+      {/* <LoggerButton style={styles.logButton} callback={handleButtonPress} /> */}
     </View>
   );
 }
