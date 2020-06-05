@@ -1,0 +1,557 @@
+schema {
+  query: query_root
+  mutation: mutation_root
+  subscription: subscription_root
+}
+
+scalar date
+
+"""
+expression to compare columns of type date. All fields are combined with logical 'AND'.
+"""
+input date_comparison_exp {
+  _eq: date
+  _gt: date
+  _gte: date
+  _in: [date!]
+  _is_null: Boolean
+  _lt: date
+  _lte: date
+  _neq: date
+  _nin: [date!]
+}
+
+"""
+expression to compare columns of type Int. All fields are combined with logical 'AND'.
+"""
+input Int_comparison_exp {
+  _eq: Int
+  _gt: Int
+  _gte: Int
+  _in: [Int!]
+  _is_null: Boolean
+  _lt: Int
+  _lte: Int
+  _neq: Int
+  _nin: [Int!]
+}
+
+"""
+columns and relationships of "journal"
+"""
+type journal {
+  date_created: date
+  description: String!
+  id: uuid!
+  likes: Int!
+  title: String!
+}
+
+"""
+aggregated selection of "journal"
+"""
+type journal_aggregate {
+  aggregate: journal_aggregate_fields
+  nodes: [journal!]!
+}
+
+"""
+aggregate fields of "journal"
+"""
+type journal_aggregate_fields {
+  avg: journal_avg_fields
+  count(columns: [journal_select_column!], distinct: Boolean): Int
+  max: journal_max_fields
+  min: journal_min_fields
+  stddev: journal_stddev_fields
+  stddev_pop: journal_stddev_pop_fields
+  stddev_samp: journal_stddev_samp_fields
+  sum: journal_sum_fields
+  var_pop: journal_var_pop_fields
+  var_samp: journal_var_samp_fields
+  variance: journal_variance_fields
+}
+
+"""
+order by aggregate values of table "journal"
+"""
+input journal_aggregate_order_by {
+  avg: journal_avg_order_by
+  count: order_by
+  max: journal_max_order_by
+  min: journal_min_order_by
+  stddev: journal_stddev_order_by
+  stddev_pop: journal_stddev_pop_order_by
+  stddev_samp: journal_stddev_samp_order_by
+  sum: journal_sum_order_by
+  var_pop: journal_var_pop_order_by
+  var_samp: journal_var_samp_order_by
+  variance: journal_variance_order_by
+}
+
+"""
+input type for inserting array relation for remote table "journal"
+"""
+input journal_arr_rel_insert_input {
+  data: [journal_insert_input!]!
+  on_conflict: journal_on_conflict
+}
+
+"""aggregate avg on columns"""
+type journal_avg_fields {
+  likes: Float
+}
+
+"""
+order by avg() on columns of table "journal"
+"""
+input journal_avg_order_by {
+  likes: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "journal". All fields are combined with a logical 'AND'.
+"""
+input journal_bool_exp {
+  _and: [journal_bool_exp]
+  _not: journal_bool_exp
+  _or: [journal_bool_exp]
+  date_created: date_comparison_exp
+  description: String_comparison_exp
+  id: uuid_comparison_exp
+  likes: Int_comparison_exp
+  title: String_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "journal"
+"""
+enum journal_constraint {
+  """unique or primary key constraint"""
+  journal_id_key
+}
+
+"""
+input type for incrementing integer column in table "journal"
+"""
+input journal_inc_input {
+  likes: Int
+}
+
+"""
+input type for inserting data into table "journal"
+"""
+input journal_insert_input {
+  date_created: date
+  description: String
+  id: uuid
+  likes: Int
+  title: String
+}
+
+"""aggregate max on columns"""
+type journal_max_fields {
+  date_created: date
+  description: String
+  id: uuid
+  likes: Int
+  title: String
+}
+
+"""
+order by max() on columns of table "journal"
+"""
+input journal_max_order_by {
+  date_created: order_by
+  description: order_by
+  id: order_by
+  likes: order_by
+  title: order_by
+}
+
+"""aggregate min on columns"""
+type journal_min_fields {
+  date_created: date
+  description: String
+  id: uuid
+  likes: Int
+  title: String
+}
+
+"""
+order by min() on columns of table "journal"
+"""
+input journal_min_order_by {
+  date_created: order_by
+  description: order_by
+  id: order_by
+  likes: order_by
+  title: order_by
+}
+
+"""
+response of any mutation on the table "journal"
+"""
+type journal_mutation_response {
+  """number of affected rows by the mutation"""
+  affected_rows: Int!
+
+  """data of the affected rows by the mutation"""
+  returning: [journal!]!
+}
+
+"""
+input type for inserting object relation for remote table "journal"
+"""
+input journal_obj_rel_insert_input {
+  data: journal_insert_input!
+  on_conflict: journal_on_conflict
+}
+
+"""
+on conflict condition type for table "journal"
+"""
+input journal_on_conflict {
+  constraint: journal_constraint!
+  update_columns: [journal_update_column!]!
+  where: journal_bool_exp
+}
+
+"""
+ordering options when selecting data from "journal"
+"""
+input journal_order_by {
+  date_created: order_by
+  description: order_by
+  id: order_by
+  likes: order_by
+  title: order_by
+}
+
+"""
+select columns of table "journal"
+"""
+enum journal_select_column {
+  """column name"""
+  date_created
+
+  """column name"""
+  description
+
+  """column name"""
+  id
+
+  """column name"""
+  likes
+
+  """column name"""
+  title
+}
+
+"""
+input type for updating data in table "journal"
+"""
+input journal_set_input {
+  date_created: date
+  description: String
+  id: uuid
+  likes: Int
+  title: String
+}
+
+"""aggregate stddev on columns"""
+type journal_stddev_fields {
+  likes: Float
+}
+
+"""
+order by stddev() on columns of table "journal"
+"""
+input journal_stddev_order_by {
+  likes: order_by
+}
+
+"""aggregate stddev_pop on columns"""
+type journal_stddev_pop_fields {
+  likes: Float
+}
+
+"""
+order by stddev_pop() on columns of table "journal"
+"""
+input journal_stddev_pop_order_by {
+  likes: order_by
+}
+
+"""aggregate stddev_samp on columns"""
+type journal_stddev_samp_fields {
+  likes: Float
+}
+
+"""
+order by stddev_samp() on columns of table "journal"
+"""
+input journal_stddev_samp_order_by {
+  likes: order_by
+}
+
+"""aggregate sum on columns"""
+type journal_sum_fields {
+  likes: Int
+}
+
+"""
+order by sum() on columns of table "journal"
+"""
+input journal_sum_order_by {
+  likes: order_by
+}
+
+"""
+update columns of table "journal"
+"""
+enum journal_update_column {
+  """column name"""
+  date_created
+
+  """column name"""
+  description
+
+  """column name"""
+  id
+
+  """column name"""
+  likes
+
+  """column name"""
+  title
+}
+
+"""aggregate var_pop on columns"""
+type journal_var_pop_fields {
+  likes: Float
+}
+
+"""
+order by var_pop() on columns of table "journal"
+"""
+input journal_var_pop_order_by {
+  likes: order_by
+}
+
+"""aggregate var_samp on columns"""
+type journal_var_samp_fields {
+  likes: Float
+}
+
+"""
+order by var_samp() on columns of table "journal"
+"""
+input journal_var_samp_order_by {
+  likes: order_by
+}
+
+"""aggregate variance on columns"""
+type journal_variance_fields {
+  likes: Float
+}
+
+"""
+order by variance() on columns of table "journal"
+"""
+input journal_variance_order_by {
+  likes: order_by
+}
+
+"""mutation root"""
+type mutation_root {
+  """
+  delete data from the table: "journal"
+  """
+  delete_journal(
+    """filter the rows which have to be deleted"""
+    where: journal_bool_exp!
+  ): journal_mutation_response
+
+  """
+  insert data into the table: "journal"
+  """
+  insert_journal(
+    """the rows to be inserted"""
+    objects: [journal_insert_input!]!
+
+    """on conflict condition"""
+    on_conflict: journal_on_conflict
+  ): journal_mutation_response
+
+  """
+  insert a single row into the table: "journal"
+  """
+  insert_journal_one(
+    """the row to be inserted"""
+    object: journal_insert_input!
+
+    """on conflict condition"""
+    on_conflict: journal_on_conflict
+  ): journal
+
+  """
+  update data of the table: "journal"
+  """
+  update_journal(
+    """increments the integer columns with given value of the filtered values"""
+    _inc: journal_inc_input
+
+    """sets the columns of the filtered rows to the given values"""
+    _set: journal_set_input
+
+    """filter the rows which have to be updated"""
+    where: journal_bool_exp!
+  ): journal_mutation_response
+}
+
+"""column ordering options"""
+enum order_by {
+  """in the ascending order, nulls last"""
+  asc
+
+  """in the ascending order, nulls first"""
+  asc_nulls_first
+
+  """in the ascending order, nulls last"""
+  asc_nulls_last
+
+  """in the descending order, nulls first"""
+  desc
+
+  """in the descending order, nulls first"""
+  desc_nulls_first
+
+  """in the descending order, nulls last"""
+  desc_nulls_last
+}
+
+"""query root"""
+type query_root {
+  """
+  fetch data from the table: "journal"
+  """
+  journal(
+    """distinct select on columns"""
+    distinct_on: [journal_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [journal_order_by!]
+
+    """filter the rows returned"""
+    where: journal_bool_exp
+  ): [journal!]!
+
+  """
+  fetch aggregated fields from the table: "journal"
+  """
+  journal_aggregate(
+    """distinct select on columns"""
+    distinct_on: [journal_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [journal_order_by!]
+
+    """filter the rows returned"""
+    where: journal_bool_exp
+  ): journal_aggregate!
+}
+
+"""
+expression to compare columns of type String. All fields are combined with logical 'AND'.
+"""
+input String_comparison_exp {
+  _eq: String
+  _gt: String
+  _gte: String
+  _ilike: String
+  _in: [String!]
+  _is_null: Boolean
+  _like: String
+  _lt: String
+  _lte: String
+  _neq: String
+  _nilike: String
+  _nin: [String!]
+  _nlike: String
+  _nsimilar: String
+  _similar: String
+}
+
+"""subscription root"""
+type subscription_root {
+  """
+  fetch data from the table: "journal"
+  """
+  journal(
+    """distinct select on columns"""
+    distinct_on: [journal_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [journal_order_by!]
+
+    """filter the rows returned"""
+    where: journal_bool_exp
+  ): [journal!]!
+
+  """
+  fetch aggregated fields from the table: "journal"
+  """
+  journal_aggregate(
+    """distinct select on columns"""
+    distinct_on: [journal_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [journal_order_by!]
+
+    """filter the rows returned"""
+    where: journal_bool_exp
+  ): journal_aggregate!
+}
+
+scalar uuid
+
+"""
+expression to compare columns of type uuid. All fields are combined with logical 'AND'.
+"""
+input uuid_comparison_exp {
+  _eq: uuid
+  _gt: uuid
+  _gte: uuid
+  _in: [uuid!]
+  _is_null: Boolean
+  _lt: uuid
+  _lte: uuid
+  _neq: uuid
+  _nin: [uuid!]
+}
+

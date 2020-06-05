@@ -4,8 +4,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
 
 import TabBarIcon from "../components/TabBarIcon";
-import Explore from "../screens/Journal";
-import JournalFeed from "../screens/Explore";
+import Journal from "../screens/Journal";
+import Explore from "../screens/Explore";
 import Logger from "../screens/JournalLogger";
 
 const BottomTab = createBottomTabNavigator();
@@ -32,7 +32,7 @@ function BottomTabNavigator({ navigation, route }) {
       />
       <BottomTab.Screen
         name="Journal"
-        component={JournalFeed}
+        component={Journal}
         options={{
           title: "Journal",
           tabBarIcon: ({ focused }) => (

@@ -2,7 +2,13 @@ import * as WebBrowser from "expo-web-browser";
 import * as React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 
-import ArticlePostList from "../components/Articles/ArticleList";
+import ArticleList from "../components/Articles/ArticleList";
+
+// export default function JournalFeed({ navigation }) {
+//   function handleButtonPress() {
+//     navigation.navigate("loggerModal");
+//   }
+// }
 
 export default function HomeFeed() {
   const today = new Date();
@@ -32,7 +38,8 @@ export default function HomeFeed() {
           </View>
         </View>
       </View>
-      <ArticlePostList />
+      <ArticleList />
+      {/* <LoggerButton style={styles.logButton} callback={handleButtonPress} /> */}
     </View>
   );
 }

@@ -84,6 +84,84 @@ export default function JournalFeed({ navigation }) {
     </View>
   );
 }
+export default function HomeFeed({ navigation }) {
+  function handleButtonPress() {
+    navigation.navigate("loggerModal");
+  }
+  return (
+    <QueryRenderer
+      environment={environment}
+      query={JournalsQuery}
+      render={({ error, props }) => {
+        if (error) {
+          return (
+            <View style={styles.container}>
+              <Header />
+              <Text>Error {JSON.stringify(error.message)}</Text>
+              <LoggerButton
+                style={styles.logButton}
+                callback={handleButtonPress}
+              />
+            </View>
+          );
+        } else if (props) {
+          // console.log(props.demoJournals[0].createdAt);
+          return (
+            <View style={styles.container}>
+              <Header />
+              {/* <Text>props {JSON.stringify(props.demoJournals)}</Text> */}
+              <JournalPostList journal={props.journal} />
+              <LoggerButton
+                style={styles.logButton}
+                callback={handleButtonPress}
+              />
+            </View>
+          );
+        }
+        return (
+          <View style={styles.container}>
+            <Header />
+            <Text>Loading</Text>
+          </View>
+        );
+      }}
+    />
+  );
+}
+
+const JournalsQuery = graphql`
+  query JournalsQuery {
+    journal(order_by: { date_created: desc_nulls_last }) {
+      id
+      title
+      description
+      date_created
+      ...JournalPost_journal
+    }
+  }
+`;
+
+HomeFeed.navigationOptions = {
+  header: null,
+};
+
+const dateFormatter = (date) => {
+  const mlist = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  return `${date.getDate()} ${mlist[date.getMonth()]}, ${date.getFullYear()}`;
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -156,5 +234,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
+  },
+  logButton: {
+    position: "absolute",
+    bottom: 10,
+    right: 10,
   },
 });
