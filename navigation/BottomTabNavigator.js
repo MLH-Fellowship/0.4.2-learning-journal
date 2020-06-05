@@ -3,9 +3,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import * as React from "react";
 
-import TabBarIcon from '../components/TabBarIcon';
-import Journal from '../screens/Journal';
-import Explore from '../screens/Explore';
+import TabBarIcon from "../components/TabBarIcon";
+import Journal from "../screens/Journal";
+import Explore from "../screens/Explore";
 import Logger from "../screens/JournalLogger";
 
 const BottomTab = createBottomTabNavigator();
@@ -21,19 +21,23 @@ function BottomTabNavigator({ navigation, route }) {
   return (
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
       <BottomTab.Screen
-        name="Journal"
+        name="Home"
         component={Journal}
         options={{
-          title: 'Journal',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
+          title: "Get Started",
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon focused={focused} name="md-code-working" />
+          ),
         }}
       />
       <BottomTab.Screen
-        name="Explore"
+        name="Journal"
         component={Explore}
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-book" />,
+          title: "Resources",
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon focused={focused} name="md-book" />
+          ),
         }}
       />
     </BottomTab.Navigator>
@@ -57,3 +61,14 @@ export default function RootStackScreen() {
   );
 }
 
+function getHeaderTitle(route) {
+  const routeName =
+    route.state?.routes[route.state.index]?.name ?? INITIAL_ROUTE_NAME;
+
+  switch (routeName) {
+    case "Home":
+      return "How to get started";
+    case "Links":
+      return "Links to learn more";
+  }
+}

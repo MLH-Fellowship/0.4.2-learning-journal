@@ -48,7 +48,6 @@ const dateFormatter = (raw_date) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
-
     marginBottom: 24,
   },
   image: {

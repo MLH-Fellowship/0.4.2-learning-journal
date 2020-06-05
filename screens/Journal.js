@@ -17,26 +17,22 @@ const Header = () => {
           <Text style={styles.dateText}>{date}</Text>
           <Text style={styles.welcomeText}>Hello, Boi!</Text>
         </View>
-        <View style={styles.streakContainer}>
-          <Text style={styles.streakNumber}>12</Text>
-          <Text style={styles.streakText}>Days Streak</Text>
-        </View>
-      </View>
-      <View style={styles.topContainerRight}>
-        <View>
-          <Image
-            source={require("../assets/images/avatar.png")}
-            style={styles.welcomeImage}
-          />
-        </View>
-        <View style={styles.journalButton}>
-          <Text style={styles.journalButtonText}>Explore</Text>
+        <View style={styles.topContainerRight}>
+          <View>
+            <Image
+              source={require("../assets/images/avatar.png")}
+              style={styles.welcomeImage}
+            />
+          </View>
+          <View style={styles.journalButton}>
+            <Text style={styles.journalButtonText}>Explore</Text>
+          </View>
         </View>
       </View>
     </View>
   );
 };
-export default function HomeFeed({navigation}) {
+export default function HomeFeed({ navigation }) {
   function handleButtonPress() {
     navigation.navigate("loggerModal");
   }
@@ -50,7 +46,10 @@ export default function HomeFeed({navigation}) {
             <View style={styles.container}>
               <Header />
               <Text>Error {JSON.stringify(error.message)}</Text>
-              <LoggerButton style={styles.logButton} callback={handleButtonPress} />
+              <LoggerButton
+                style={styles.logButton}
+                callback={handleButtonPress}
+              />
             </View>
           );
         } else if (props) {
@@ -60,7 +59,10 @@ export default function HomeFeed({navigation}) {
               <Header />
               {/* <Text>props {JSON.stringify(props.demoJournals)}</Text> */}
               <JournalPostList journal={props.journal} />
-              <LoggerButton style={styles.logButton} callback={handleButtonPress} />
+              <LoggerButton
+                style={styles.logButton}
+                callback={handleButtonPress}
+              />
             </View>
           );
         }
@@ -77,7 +79,7 @@ export default function HomeFeed({navigation}) {
 
 const JournalsQuery = graphql`
   query JournalsQuery {
-    journal (order_by:{date_created:desc_nulls_last}) {
+    journal(order_by: { date_created: desc_nulls_last }) {
       id
       title
       description
