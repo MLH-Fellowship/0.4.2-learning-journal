@@ -62,8 +62,11 @@ export default function JournalFeed({ navigation }) {
       />
       <Modal animationType="slide" transparent visible={modalVisible}>
         <View style={styles.modalView}>
-          <TouchableOpacity onPress={() => setModalVisible(false)}>
-            <Text style={{ alignSelf: "flex-end" }}>Close</Text>
+          <TouchableOpacity
+            style={{ alignSelf: "flex-end" }}
+            onPress={() => setModalVisible(false)}
+          >
+            <Text style={{ color: "red" }}>Close</Text>
           </TouchableOpacity>
           <Heatmap
             style={{
