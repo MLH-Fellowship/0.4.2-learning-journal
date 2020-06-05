@@ -10,7 +10,7 @@ import Logger from "../screens/JournalLogger";
 
 const BottomTab = createBottomTabNavigator();
 const RootStack = createStackNavigator();
-const INITIAL_ROUTE_NAME = "Home";
+const INITIAL_ROUTE_NAME = "Explore";
 
 function BottomTabNavigator({ navigation, route }) {
   // Set the header title on the parent stack navigator depending on the
@@ -21,10 +21,10 @@ function BottomTabNavigator({ navigation, route }) {
   return (
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
       <BottomTab.Screen
-        name="Home"
-        component={Journal}
+        name="Explore"
+        component={Explore}
         options={{
-          title: "Get Started",
+          title: "Explore",
           tabBarIcon: ({ focused }) => (
             <TabBarIcon focused={focused} name="md-code-working" />
           ),
@@ -32,9 +32,9 @@ function BottomTabNavigator({ navigation, route }) {
       />
       <BottomTab.Screen
         name="Journal"
-        component={Explore}
+        component={Journal}
         options={{
-          title: "Resources",
+          title: "Journal",
           tabBarIcon: ({ focused }) => (
             <TabBarIcon focused={focused} name="md-book" />
           ),

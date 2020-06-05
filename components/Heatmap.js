@@ -38,7 +38,7 @@ export default function Heatmap({ style, dateDetails, width, height }) {
     backgroundGradientFrom: "#1E2923",
     backgroundGradientFromOpacity: 0,
     backgroundGradientTo: "#08130D",
-    backgroundGradientToOpacity: 0.5,
+    backgroundGradientToOpacity: 0,
     color: (opacity = 1) => `rgba(127, 63, 152, ${opacity})`,
     strokeWidth: 2, // optional, default 3
     barPercentage: 0.5,
@@ -46,7 +46,12 @@ export default function Heatmap({ style, dateDetails, width, height }) {
   };
 
   return (
-    <View style={{ ...style }}>
+    <View
+      style={{
+        ...style,
+        marginTop: 40,
+      }}
+    >
       <ContributionGraph
         values={dateDetails}
         horizontal={false}
